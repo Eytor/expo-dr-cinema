@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    View, Text, ActivityIndicator, ScrollView,
+    View, Text, ActivityIndicator, ScrollView, TouchableOpacity,
 } from 'react-native';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import defaultStyles from '../../resources/defaultStyles';
@@ -38,7 +38,7 @@ class CinemaScreen extends Component {
 
     render() {
         const cinemas = this.state.cinemaList.map((cinema) => (
-            <View style={styles.cinemaItem} key={cinema.id}>
+            <TouchableOpacity style={styles.cinemaItem} key={cinema.id}>
                 <View style={styles.cinemaTextWrapper}>
                     <Text style={styles.cinemaItemText}>{cinema.name}</Text>
                     <Text style={styles.cinemaWebsite}>{cinema.website}</Text>
@@ -47,7 +47,7 @@ class CinemaScreen extends Component {
                     <AntIcon name="arrowright" color="#fff" size={20} />
                 </View>
 
-            </View>
+            </TouchableOpacity>
         ));
         return (
             <View style={[defaultStyles.container, this.state.isLoading && defaultStyles.center]}>
