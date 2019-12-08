@@ -1,6 +1,6 @@
 export function getAuthToken() {
     const url = 'http://api.kvikmyndir.is/authenticate';
-    const userinfo = { username: 'jnbjarni', password: '12341234' };
+    const userinfo = { username: 'eythoras16', password: 'MappBadBoy' };
     return fetch(url, {
         method: 'POST',
         body: JSON.stringify(userinfo),
@@ -12,10 +12,11 @@ export function getAuthToken() {
         if (response.status >= 200 && response.status < 300) {
             return response.text();
         }
+        throw new Error(response);
     }).then((info) => {
         const { token } = JSON.parse(info);
         return token;
-    });
+    }).catch((error) => { console.log(error); });
 }
 
 export function getAllMovies(token) {
@@ -31,7 +32,8 @@ export function getAllMovies(token) {
         if (response.status >= 200 && response.status < 300) {
             return response.text();
         }
-    });
+        throw new Error('error', response);
+    }).catch((error) => { console.log(error); });
 }
 
 
@@ -50,5 +52,6 @@ export function getAllCinemas(token) {
         if (response.status >= 200 && response.status < 300) {
             return response.json();
         }
-    });
+        throw new Error('error ', response);
+    }).catch((error) => { console.log(error); });
 }
