@@ -9,7 +9,7 @@ class CinemaScreen extends Component {
         this.token = getAuthToken();
         this.state = {
             token: null,
-            movieList: null,
+            movieList: [],
         };
     }
 
@@ -21,8 +21,8 @@ class CinemaScreen extends Component {
         }).then(() => {
             getAllMovies(this.state.token).then((movieList) => {
                 this.setState({
-                    movieList,
-                }, console.log('Fetched movies!'));
+                    movieList: movieList,
+                });
             });
         });
     }
