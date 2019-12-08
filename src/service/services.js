@@ -19,11 +19,10 @@ export function getAuthToken() {
 }
 
 export function getAllMovies(token) {
-    const url = `http://api.biomynd.is/movies?token=${token}`;
+    const url = `http://api.kvikmyndir.is/movies?token=${token}`;
     return fetch(url, {
         method: 'GET',
         headers: {
-            Accept: 'application/json',
             'Content-Type': 'application/json',
         },
     }).then((response) => {

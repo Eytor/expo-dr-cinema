@@ -17,12 +17,12 @@ class CinemaScreen extends Component {
         getAuthToken().then((token) => {
             this.setState({
                 token,
-            }, () => console.log(this.state.token));
+            }, () => console.log('Fetched token!'));
         }).then(() => {
             getAllMovies(this.state.token).then((movieList) => {
                 this.setState({
                     movieList,
-                }, console.log(this.state.movieList));
+                }, console.log('Fetched movies!'));
             });
         });
     }
