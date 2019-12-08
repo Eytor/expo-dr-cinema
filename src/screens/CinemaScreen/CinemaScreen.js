@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import defaultStyles from '../../resources/defaultStyles';
-import { getAuthToken, getAllMovies } from '../../service/services';
+import { getAuthToken, getAllMovies, getAllCinemas } from '../../service/services';
 
 class CinemaScreen extends Component {
     constructor(props) {
@@ -9,7 +9,8 @@ class CinemaScreen extends Component {
         this.token = getAuthToken();
         this.state = {
             token: null,
-            movieList: [],
+            movieList: null,
+            cinemaList: [],
         };
     }
 
@@ -17,11 +18,11 @@ class CinemaScreen extends Component {
         getAuthToken().then((token) => {
             this.setState({
                 token,
-            }, () => console.log('Fetched token!'));
+            });
         }).then(() => {
-            getAllMovies(this.state.token).then((movieList) => {
+            getAllCinemas(this.state.token).then((cinemaList) => {
                 this.setState({
-                    movieList: movieList,
+                    cinemaList,
                 });
             });
         });
@@ -29,9 +30,12 @@ class CinemaScreen extends Component {
 
 
     render() {
+        const cinemas = this.state.cinemaList.map(cinema => {
+            return <View key={cinema.id}><Text style={{color: 'orange'}}>{cinema.name}</Text></View>;
+        })
         return (
             <View style={defaultStyles.container}>
-                <Text>Some text</Text>
+                {cinemas}
             </View>
         );
     }
