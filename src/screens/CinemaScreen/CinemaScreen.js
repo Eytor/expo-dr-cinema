@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import {
+    View, Text, ActivityIndicator, ScrollView,
+} from 'react-native';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import defaultStyles from '../../resources/defaultStyles';
 import { getAuthToken, getAllCinemas } from '../../service/services';
@@ -23,7 +25,7 @@ class CinemaScreen extends Component {
         }).then(() => {
             getAllCinemas(this.state.token).then((cinemaList) => {
                 this.setState({
-                    cinemaList,
+                    cinemaList: cinemaList.sort((a, b) => a.name.localeCompare(b.name)),
                 });
             }).then(() => {
                 this.setState({
@@ -39,9 +41,10 @@ class CinemaScreen extends Component {
             <View style={styles.cinemaItem} key={cinema.id}>
                 <View style={styles.cinemaTextWrapper}>
                     <Text style={styles.cinemaItemText}>{cinema.name}</Text>
+                    <Text style={styles.cinemaWebsite}>{cinema.website}</Text>
                 </View>
                 <View style={styles.cinemaIconWrapper}>
-                    <AntIcon name="arrowright" size={15} />
+                    <AntIcon name="arrowright" color="#fff" size={20} />
                 </View>
 
             </View>
@@ -51,12 +54,14 @@ class CinemaScreen extends Component {
                 {
                     this.state.isLoading ? (
                         <View style={defaultStyles.loaderWrapper}>
-                            <ActivityIndicator size="large" color="#3F88C5" />
+                            <ActivityIndicator size="large" color="#383B53" />
                         </View>
                     ) : (
-                        <View style={styles.cinemaWrapper}>
-                            {cinemas}
-                        </View>
+                        <ScrollView>
+                            <View style={styles.cinemaWrapper}>
+                                {cinemas}
+                            </View>
+                        </ScrollView>
                     )
                 }
             </View>
