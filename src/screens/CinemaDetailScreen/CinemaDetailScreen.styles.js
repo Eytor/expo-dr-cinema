@@ -9,6 +9,7 @@ export default StyleSheet.create({
         paddingHorizontal: 15,
         backgroundColor: Colors.charcoal,
         borderRadius: 15,
+        marginBottom: 15,
     },
 
     header: {
@@ -39,5 +40,8 @@ export default StyleSheet.create({
 
     movieList: {
         flex: 1,
+        padding: 15,
+        backgroundColor: Colors.charcoal,
+        borderRadius: 15,
     },
 });
