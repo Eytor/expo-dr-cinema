@@ -4,7 +4,7 @@ import Colors from './Colors';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.charcoal,
+        backgroundColor: Colors.dark,
         padding: 15,
         position: 'relative',
     },
