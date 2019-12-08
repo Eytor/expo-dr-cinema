@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import defaultStyles from '../../resources/defaultStyles';
-import { getAuthToken, getAllMovies } from '../../service/services';
+import { getAuthToken, getAllMovies, getAllCinemas } from '../../service/services';
 
 class CinemaScreen extends Component {
     constructor(props) {
@@ -10,6 +10,7 @@ class CinemaScreen extends Component {
         this.state = {
             token: null,
             movieList: null,
+            cinemaList: [],
         };
     }
 
@@ -19,10 +20,10 @@ class CinemaScreen extends Component {
                 token,
             }, () => console.log('Fetched token!'));
         }).then(() => {
-            getAllMovies(this.state.token).then((movieList) => {
+            getAllCinemas(this.state.token).then((cinemaList) => {
                 this.setState({
-                    movieList,
-                }, console.log('Fetched movies!'));
+                    cinemaList,
+                }, () => console.log(this.state.cinemaList));
             });
         });
     }

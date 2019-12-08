@@ -19,11 +19,32 @@ export function getAuthToken() {
 }
 
 export function getAllMovies(token) {
-    const url = `http://api.kvikmyndir.is/movies?token=${token}`;
+    const url = 'http://api.kvikmyndir.is/movies';
     return fetch(url, {
         method: 'GET',
         headers: {
+            Accept: 'application/json',
             'Content-Type': 'application/json',
+            'x-access-token': token,
+        },
+    }).then((response) => {
+        if (response.status >= 200 && response.status < 300) {
+            return response.text();
+        }
+    });
+}
+
+
+export function getAllCinemas(token) {
+    const url = 'http://api.kvikmyndir.is/theaters';
+    console.log(url);
+    return fetch(url, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'x-access-token': token,
+            'Accept-Charset': 'utf-8',
         },
     }).then((response) => {
         if (response.status >= 200 && response.status < 300) {
