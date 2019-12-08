@@ -13,6 +13,7 @@ import defaultStyles from '../../resources/defaultStyles';
 import { getAuthToken, getAllCinemas } from '../../service/services';
 import styles from './CinemaScreen.styles';
 import { setToken } from '../../actions/tokenActions';
+import { setCinema } from '../../actions/cinemaActions';
 
 class CinemaScreen extends Component {
     constructor(props) {
@@ -43,9 +44,19 @@ class CinemaScreen extends Component {
             });
     }
 
+    // eslint-disable-next-line class-methods-use-this
+    selectCinema(cinema) {
+        setCinema(cinema.id, cinema.name, cinema['address\t'], cinema.city, cinema.phone, cinema.website, cinema.description);
+        this.props.navigation.navigate('CinemaDetailScreen');
+    }
+
     render() {
         const cinemas = this.state.cinemaList.map((cinema) => (
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('CinemaDetailScreen', { cinema })} style={styles.cinemaItem} key={cinema.id}>
+            <TouchableOpacity
+                onPress={() => this.selectCinema(cinema)}
+                style={styles.cinemaItem}
+                key={cinema.id}
+            >
                 <View style={styles.cinemaTextWrapper}>
                     <Text style={styles.cinemaItemText}>{cinema.name}</Text>
                     <Text style={styles.cinemaWebsite}>{cinema.website}</Text>
@@ -82,6 +93,6 @@ CinemaScreen.propTypes = {
     navigation: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (reduxStoreState) => ({ token: reduxStoreState });
+const mapStateToProps = (reduxStoreState) => ({ token: reduxStoreState.token });
 
-export default connect(mapStateToProps, { setToken })(CinemaScreen);
+export default connect(mapStateToProps, { setToken, setCinema })(CinemaScreen);
