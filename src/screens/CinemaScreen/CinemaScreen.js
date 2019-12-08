@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import defaultStyles from '../../resources/defaultStyles';
-import { getAuthToken, getAllMovies, getAllCinemas } from '../../service/services';
+import { getAuthToken, getAllCinemas } from '../../service/services';
 
 class CinemaScreen extends Component {
     constructor(props) {
         super(props);
-        this.token = getAuthToken();
         this.state = {
             token: null,
-            movieList: null,
             cinemaList: [],
         };
     }
@@ -31,7 +29,7 @@ class CinemaScreen extends Component {
 
     render() {
         const cinemas = this.state.cinemaList.map(cinema => {
-            return <View key={cinema.id}><Text style={{color: 'orange'}}>{cinema.name}</Text></View>;
+            return <View key={cinema.id}><Text style={{ color: 'orange' }}>{cinema.name}</Text></View>;
         })
         return (
             <View style={defaultStyles.container}>
