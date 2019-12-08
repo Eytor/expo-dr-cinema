@@ -1,20 +1,23 @@
-export async function getAuthToken() {
+export function getAuthToken() {
     const url = 'http://api.kvikmyndir.is/authenticate';
     const userinfo = { username: 'jnbjarni', password: '12341234' };
     console.log(JSON.stringify(userinfo));
-    const response = await fetch(url, {
+    fetch(url, {
         method: 'POST',
-        body: JSON.stringify({ userinfo }),
+        body: JSON.stringify(userinfo),
         headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-    });
-    const res = await response.text();
-
-    if (response.status >= 200 && response.status < 300) {
-        console.log(res);
-    }
-    return response;
+    }).then((response) => {
+        console.log(response);
+        if (response.status >= 200 && response.status < 300) {
+            return response.text()
+        }
+    }).then(info => {
+        console.log(info)
+        return info;
+    })
 }
 
 export async function getAllMovies(token) {
