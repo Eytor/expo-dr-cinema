@@ -6,6 +6,7 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.dark,
         padding: 15,
+        paddingHorizontal: 0,
         position: 'relative',
     },
     center: {

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import {
-    View, Text, ActivityIndicator, ScrollView, TouchableOpacity,
+    View,
+    Text,
+    ActivityIndicator,
+    ScrollView,
+    TouchableOpacity,
 } from 'react-native';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import { connect } from 'react-redux';
@@ -20,25 +24,28 @@ class CinemaScreen extends Component {
     }
 
     componentWillMount() {
-        getAuthToken().then((token) => {
-            this.props.setToken(token);
-        }).then(() => {
-            getAllCinemas(this.props.token).then((cinemaList) => {
-                this.setState({
-                    cinemaList: cinemaList.sort((a, b) => a.name.localeCompare(b.name)),
-                });
-            }).then(() => {
-                this.setState({
-                    isLoading: false,
-                });
+        getAuthToken()
+            .then((token) => {
+                this.props.setToken(token);
+            })
+            .then(() => {
+                getAllCinemas(this.props.token)
+                    .then((cinemaList) => {
+                        this.setState({
+                            cinemaList: cinemaList.sort((a, b) => a.name.localeCompare(b.name)),
+                        });
+                    })
+                    .then(() => {
+                        this.setState({
+                            isLoading: false,
+                        });
+                    });
             });
-        });
     }
-
 
     render() {
         const cinemas = this.state.cinemaList.map((cinema) => (
-            <TouchableOpacity style={styles.cinemaItem} key={cinema.id}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('CinemaDetailScreen', { cinema })} style={styles.cinemaItem} key={cinema.id}>
                 <View style={styles.cinemaTextWrapper}>
                     <Text style={styles.cinemaItemText}>{cinema.name}</Text>
                     <Text style={styles.cinemaWebsite}>{cinema.website}</Text>
@@ -46,24 +53,24 @@ class CinemaScreen extends Component {
                 <View style={styles.cinemaIconWrapper}>
                     <AntIcon name="arrowright" color="#fff" size={20} />
                 </View>
-
             </TouchableOpacity>
         ));
         return (
-            <View style={[defaultStyles.container, this.state.isLoading && defaultStyles.center]}>
-                {
-                    this.state.isLoading ? (
-                        <View style={defaultStyles.loaderWrapper}>
-                            <ActivityIndicator size="large" color="#383B53" />
-                        </View>
-                    ) : (
-                        <ScrollView>
-                            <View style={styles.cinemaWrapper}>
-                                {cinemas}
-                            </View>
-                        </ScrollView>
-                    )
-                }
+            <View
+                style={[
+                    defaultStyles.container,
+                    this.state.isLoading && defaultStyles.center,
+                ]}
+            >
+                {this.state.isLoading ? (
+                    <View style={defaultStyles.loaderWrapper}>
+                        <ActivityIndicator size="large" color="#383B53" />
+                    </View>
+                ) : (
+                    <ScrollView style={styles.cinemaWrapper}>
+                        {cinemas}
+                    </ScrollView>
+                )}
             </View>
         );
     }
@@ -72,6 +79,7 @@ class CinemaScreen extends Component {
 CinemaScreen.propTypes = {
     setToken: PropTypes.func.isRequired,
     token: PropTypes.string.isRequired,
+    navigation: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (reduxStoreState) => ({ token: reduxStoreState });

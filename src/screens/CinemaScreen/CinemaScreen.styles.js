@@ -4,6 +4,7 @@ import Colors from '../../resources/Colors';
 export default StyleSheet.create({
     cinemaWrapper: {
         flex: 1,
+        paddingHorizontal: 15,
     },
     cinemaItem: {
         flexDirection: 'row',
