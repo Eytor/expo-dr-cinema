@@ -9,8 +9,11 @@ export async function getAuthToken() {
             'Content-Type': 'application/json',
         },
     });
-    const json = await response.json();
-    console.log(JSON.stringify(json));
+    const res = await response.text();
+
+    if (response.status >= 200 && response.status < 300) {
+        console.log(res);
+    }
     return response;
 }
 
