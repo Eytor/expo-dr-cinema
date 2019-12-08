@@ -9,6 +9,7 @@ import {
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import defaultStyles from '../../resources/defaultStyles';
 import { getAuthToken, getAllCinemas } from '../../service/services';
 import styles from './CinemaScreen.styles';
@@ -44,9 +45,8 @@ class CinemaScreen extends Component {
             });
     }
 
-    // eslint-disable-next-line class-methods-use-this
     selectCinema(cinema) {
-        setCinema(cinema.id, cinema.name, cinema['address\t'], cinema.city, cinema.phone, cinema.website, cinema.description);
+        this.props.setCinema(cinema.id, cinema.name, cinema['address\t'], cinema.city, cinema.phone, cinema.website, cinema.description);
         this.props.navigation.navigate('CinemaDetailScreen');
     }
 
@@ -95,4 +95,9 @@ CinemaScreen.propTypes = {
 
 const mapStateToProps = (reduxStoreState) => ({ token: reduxStoreState.token });
 
-export default connect(mapStateToProps, { setToken, setCinema })(CinemaScreen);
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+    { setToken, setCinema },
+    dispatch,
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(CinemaScreen);

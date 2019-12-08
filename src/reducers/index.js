@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import cinema from './cinemaReducer';
 import token from './tokenReducer';
+import cinema from './cinemaReducer';
 
-export default combineReducers({ cinema, token });
+export default combineReducers({ token, cinema });

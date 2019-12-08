@@ -62,9 +62,6 @@ CinemaDetailScreen.propTypes = {
     cinema: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (reduxStoreState) => {
-    console.log(reduxStoreState);
-    return ({ cinema: reduxStoreState.cinema });
-};
+const mapStateToProps = (reduxStoreState) => ({ cinema: reduxStoreState.cinema });
 
 export default connect(mapStateToProps)(CinemaDetailScreen);
