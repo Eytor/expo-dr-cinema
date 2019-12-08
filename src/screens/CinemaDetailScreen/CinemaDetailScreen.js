@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './CinemaDetailScreen.styles';
 
 class CinemaDetailScreen extends Component {
     render() {
-        const { cinema } = this.props.navigation.state.params;
+        const { cinema } = this.props;
 
         return (
             <View style={[defaultStyles.container, { paddingHorizontal: 15 }]}>
@@ -38,6 +39,9 @@ class CinemaDetailScreen extends Component {
 
 CinemaDetailScreen.propTypes = {
     navigation: PropTypes.object.isRequired,
+    cinema: PropTypes.object.isRequired,
 };
 
-export default CinemaDetailScreen;
+const mapStateToProps = (reduxStoreState) => ({ cinema: reduxStoreState.cinema });
+
+export default connect(mapStateToProps)(CinemaDetailScreen);
