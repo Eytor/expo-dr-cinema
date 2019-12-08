@@ -1,6 +1,7 @@
 import * as constants from '../constants';
 
-export const setToken = token => ({
+// eslint-disable-next-line import/prefer-default-export
+export const setToken = (token) => ({
     type: constants.SET_TOKEN,
-    payload: token
-})
+    payload: token,
+});

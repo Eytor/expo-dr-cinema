@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import AntIcon from 'react-native-vector-icons/AntDesign';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import defaultStyles from '../../resources/defaultStyles';
 import { getAuthToken, getAllCinemas } from '../../service/services';
 import styles from './CinemaScreen.styles';
+import { setToken } from '../../actions/tokenActions';
 
 class CinemaScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            token: null,
             cinemaList: [],
             isLoading: true,
         };
@@ -17,11 +19,9 @@ class CinemaScreen extends Component {
 
     componentWillMount() {
         getAuthToken().then((token) => {
-            this.setState({
-                token,
-            });
+            this.props.setToken(token);
         }).then(() => {
-            getAllCinemas(this.state.token).then((cinemaList) => {
+            getAllCinemas(this.props.token).then((cinemaList) => {
                 this.setState({
                     cinemaList,
                 });
@@ -64,4 +64,11 @@ class CinemaScreen extends Component {
     }
 }
 
-export default CinemaScreen;
+CinemaScreen.propTypes = {
+    setToken: PropTypes.func.isRequired,
+    token: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = (reduxStoreState) => ({ token: reduxStoreState });
+
+export default connect(mapStateToProps, { setToken })(CinemaScreen);
