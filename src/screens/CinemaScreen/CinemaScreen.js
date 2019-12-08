@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
+import AntIcon from 'react-native-vector-icons/AntDesign';
 import defaultStyles from '../../resources/defaultStyles';
 import { getAuthToken, getAllCinemas } from '../../service/services';
+import styles from './CinemaScreen.styles';
 
 class CinemaScreen extends Component {
     constructor(props) {
@@ -9,6 +11,7 @@ class CinemaScreen extends Component {
         this.state = {
             token: null,
             cinemaList: [],
+            isLoading: true,
         };
     }
 
@@ -22,18 +25,40 @@ class CinemaScreen extends Component {
                 this.setState({
                     cinemaList,
                 });
+            }).then(() => {
+                this.setState({
+                    isLoading: false,
+                });
             });
         });
     }
 
 
     render() {
-        const cinemas = this.state.cinemaList.map(cinema => {
-            return <View key={cinema.id}><Text style={{ color: 'orange' }}>{cinema.name}</Text></View>;
-        })
+        const cinemas = this.state.cinemaList.map((cinema) => (
+            <View style={styles.cinemaItem} key={cinema.id}>
+                <View style={styles.cinemaTextWrapper}>
+                    <Text style={styles.cinemaItemText}>{cinema.name}</Text>
+                </View>
+                <View style={styles.cinemaIconWrapper}>
+                    <AntIcon name="arrowright" size={15} />
+                </View>
+
+            </View>
+        ));
         return (
-            <View style={defaultStyles.container}>
-                {cinemas}
+            <View style={[defaultStyles.container, this.state.isLoading && defaultStyles.center]}>
+                {
+                    this.state.isLoading ? (
+                        <View style={defaultStyles.loaderWrapper}>
+                            <ActivityIndicator size="large" color="#3F88C5" />
+                        </View>
+                    ) : (
+                        <View style={styles.cinemaWrapper}>
+                            {cinemas}
+                        </View>
+                    )
+                }
             </View>
         );
     }

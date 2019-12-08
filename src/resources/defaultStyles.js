@@ -6,5 +6,10 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.charcoal,
         padding: 15,
+        position: 'relative',
+    },
+    center: {
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
