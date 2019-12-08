@@ -19,8 +19,16 @@ class CinemaDetailScreen extends Component {
         };
     }
 
-    filterMovies = () => {
 
+    componentWillMount() {
+        this.filterMovies();
+    }
+
+    filterMovies = () => {
+        getAllMovies(this.props.token).then((allMovies) => {
+            const movies = allMovies.filter((movie) => movie.showtimes[0].cinema.id === this.props.cinema.id);
+            console.log(movies);
+        });
     }
 
     render() {
@@ -59,9 +67,10 @@ class CinemaDetailScreen extends Component {
 
 CinemaDetailScreen.propTypes = {
     navigation: PropTypes.object.isRequired,
+    token: PropTypes.string.isRequired,
     cinema: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (reduxStoreState) => ({ cinema: reduxStoreState.cinema });
+const mapStateToProps = (reduxStoreState) => ({ token: reduxStoreState.token, cinema: reduxStoreState.cinema });
 
 export default connect(mapStateToProps)(CinemaDetailScreen);
