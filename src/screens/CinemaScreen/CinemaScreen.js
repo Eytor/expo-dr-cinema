@@ -6,21 +6,27 @@ import { getAuthToken, getAllMovies } from '../../service/services';
 class CinemaScreen extends Component {
     constructor(props) {
         super(props);
+        this.token = getAuthToken();
         this.state = {
             token: null,
             movieList: null,
         };
     }
 
-    componentDidMount() {
-        const token = getAuthToken();
-        const movieList = getAllMovies(this.getToken);
-
-        this.setState({
-            token,
-            movieList,
+    componentWillMount() {
+        getAuthToken().then((token) => {
+            this.setState({
+                token,
+            }, () => console.log(this.state.token));
+        }).then(() => {
+            getAllMovies(this.state.token).then((movieList) => {
+                this.setState({
+                    movieList,
+                }, console.log(this.state.movieList));
+            });
         });
     }
+
 
     render() {
         return (

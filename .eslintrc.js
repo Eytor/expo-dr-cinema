@@ -11,6 +11,7 @@ module.exports = {
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
+    fetch: true
   },
   parser: 'babel-eslint',
   parserOptions: {
@@ -40,7 +41,7 @@ module.exports = {
     "space-before-blocks": [2, "always"],
     "block-spacing": [2, "always"],
     "indent": [1, 4],
-    "react/jsx-indent": [1,4],
+    "react/jsx-indent": [1, 4],
     "no-duplicate-imports": 2,
     "no-unused-vars": 2,
     "no-use-before-define": "off",
@@ -58,7 +59,4 @@ module.exports = {
     "no-underscore-dangle": 0,
     "react/jsx-props-no-spreading": 0
   },
-  globals: {
-    fetch: true
-  }
 };
