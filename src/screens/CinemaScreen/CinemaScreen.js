@@ -82,6 +82,9 @@ CinemaScreen.propTypes = {
     navigation: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (reduxStoreState) => ({ token: reduxStoreState });
+const mapStateToProps = (reduxStoreState) => {
+    console.log('reduxstorestate: ', reduxStoreState);
+    return { token: reduxStoreState.token };
+};
 
 export default connect(mapStateToProps, { setToken })(CinemaScreen);
