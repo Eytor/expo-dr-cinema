@@ -1,19 +1,16 @@
 export async function getAuthToken() {
-    console.log(JSON.stringify({
-        username: 'jnbjarni',
-        password: '12341234',
-    }));
-    const response = await fetch('http://api.kvikmyndir.is/authenticate', {
+    const url = 'http://api.kvikmyndir.is/authenticate';
+    const userinfo = { username: 'jnbjarni', password: '12341234' };
+    console.log(JSON.stringify(userinfo));
+    const response = await fetch(url, {
         method: 'POST',
-        body: JSON.stringify({
-            username: 'jnbjarni',
-            password: '12341234',
-        }),
+        body: JSON.stringify({ userinfo }),
         headers: {
             'Content-Type': 'application/json',
         },
     });
-    console.log(response);
+    const json = await response.json();
+    console.log(JSON.stringify(json));
     return response;
 }
 
