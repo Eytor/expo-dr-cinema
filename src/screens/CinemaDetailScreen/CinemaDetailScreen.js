@@ -4,6 +4,7 @@ import {
     Text,
     ScrollView,
     Dimensions,
+    ActivityIndicator,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -13,6 +14,7 @@ import styles from './CinemaDetailScreen.styles';
 import { getAllMovies } from '../../service/services';
 import { setMovie } from '../../actions/movieActions';
 import CinemaDetails from '../../components/CinemaDetails/CinemaDetails';
+import Colors from '../../resources/Colors';
 
 class CinemaDetailScreen extends Component {
     constructor(props) {
@@ -20,6 +22,7 @@ class CinemaDetailScreen extends Component {
         this.selectMovie = this.selectMovie.bind(this);
         this.state = {
             relatedMovies: [],
+            isLoading: true,
         };
     }
 
@@ -93,8 +96,7 @@ class CinemaDetailScreen extends Component {
                                 {`Í ${cinema.name} núna`}
                             </Text>
                         </View>
-
-                        {movies}
+                        {movies.length > 0 ? movies : <ActivityIndicator size="small" color={Colors.gray} />}
                     </View>
                 </ScrollView>
             </View>
