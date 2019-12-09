@@ -33,6 +33,7 @@ class CinemaDetails extends Component {
             movie,
             selectMovie,
         } = this.props;
+        const certicateColor = this.getCertificateColor();
         return (
             <TouchableOpacity
                 key={movie.id}
@@ -43,10 +44,11 @@ class CinemaDetails extends Component {
                     movie.durationMinutes,
                     movie.year,
                     movie.genres,
-                    movie.showtimes)}
+                    movie.showtimes,
+                    certicateColor)}
             >
                 <View style={styles.movieWrapper}>
-                    <View style={[styles.infoBoxTop, { backgroundColor: this.getCertificateColor() }]}>
+                    <View style={[styles.infoBoxTop, { backgroundColor: certicateColor }]}>
                         <Text style={styles.movieHeading}>
                             {movie.title}
                         </Text>
@@ -62,7 +64,7 @@ class CinemaDetails extends Component {
                         resizeMode="contain"
                         source={{ uri: movie.poster }}
                     />
-                    <View style={[styles.infoBoxBottom, { backgroundColor: this.getCertificateColor() }]}>
+                    <View style={[styles.infoBoxBottom, { backgroundColor: certicateColor }]}>
                         {movie.genres.map((genre) => (
                             <View key={genre.ID}>
                                 <Text style={styles.movieGenre}>{genre.Name}</Text>
