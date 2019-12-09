@@ -46,8 +46,8 @@ class CinemaDetailScreen extends Component {
     render() {
         const { cinema } = this.props;
         const dimensions = Dimensions.get('window');
-        const imageHeight = 445;
-        const imageWidth = dimensions.width;
+        const imageHeight = ((dimensions.width - 60) * 10) / 6.75;
+        const imageWidth = (dimensions.width - 60);
         const movies = this.state.relatedMovies.map((movie) => (
             <TouchableOpacity
                 key={movie.id}
@@ -68,23 +68,17 @@ class CinemaDetailScreen extends Component {
                             {movie.year}
                         </Text>
                     </View>
-                    <Image
-                        style={{
-                            width: imageWidth,
-                            height: imageHeight,
-                            position: 'relative',
-                            top: 0,
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                        }}
-                        resizeMode="contain"
-                        source={{ uri: movie.poster }}
-                    />
+                    <View style={styles.movieposterWrapper}>
+                        <Image
+                            style={{ height: imageHeight, width: imageWidth, maxWidth: '100%' }}
+                            resizeMode="contain"
+                            source={{ uri: movie.poster }}
+                        />
+                    </View>
                     <View style={styles.infoBoxBottom}>
                         {movie.genres.map((genre) => (
                             <View key={genre.ID}>
-                                <Text>{genre.Name}</Text>
+                                <Text style={styles.movieGenre}>{genre.Name}</Text>
                             </View>
                         ))}
                     </View>
