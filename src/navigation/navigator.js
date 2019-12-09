@@ -2,7 +2,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import CinemaScreen from '../screens/CinemaScreen/CinemaScreen';
 import CinemaDetailScreen from '../screens/CinemaDetailScreen/CinemaDetailScreen';
 import MovieDetailScreen from '../screens/MovieDetailScreen/MovieDetailScreen';
-import UpcomingMovieTimes from '../screens/UpcomingMovieTimes/UpcomingMovieTimes';
+import UpcomingMovies from '../screens/UpcomingMovies/UpcomingMovies';
 import Colors from '../resources/Colors';
 
 const AppNavigator = createStackNavigator({
@@ -44,8 +44,8 @@ const AppNavigator = createStackNavigator({
             },
         }),
     },
-    UpcomingMovieTimes: {
-        screen: UpcomingMovieTimes,
+    UpcomingMovies: {
+        screen: UpcomingMovies,
         navigationOptions: ({ navigation }) => ({
             headerTitle: navigation.state.params.title,
             headerTitleStyle: {

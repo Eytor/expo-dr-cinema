@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
-class UpcomingMovieTimes extends Component {
+class UpcomingMovies extends Component {
     render() {
         return (
             <View>
                 <Text>
-                    Displaying ShowTimes for master Eythor
+                    Displaying Upcoming movies for master Eythor
                 </Text>
             </View>
         );
     }
 }
-export default UpcomingMovieTimes;
+export default UpcomingMovies;
