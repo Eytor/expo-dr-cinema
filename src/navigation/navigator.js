@@ -47,10 +47,11 @@ const AppNavigator = createStackNavigator({
     },
     UpcomingMovies: {
         screen: UpcomingMovies,
-        navigationOptions: ({ navigation }) => ({
-            headerTitle: navigation.state.params.title,
+        navigationOptions: () => ({
+            headerTitle: 'Væntanlegar kvikmyndir',
             headerTitleStyle: {
                 color: '#fff',
+                fontWeight: '400',
             },
             headerTintColor: '#fff',
             headerStyle: {
