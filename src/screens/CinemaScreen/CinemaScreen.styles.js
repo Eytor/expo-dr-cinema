@@ -32,4 +32,20 @@ export default StyleSheet.create({
         fontSize: 14,
         color: Colors.gray,
     },
+
+    upComingMoviesBtn: {
+        borderRadius: 15,
+        padding: 15,
+        backgroundColor: Colors.warning,
+        marginHorizontal: 15,
+        marginBottom: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    upComingMoviesBtnText: {
+        fontSize: 16,
+        color: Colors.white,
+    },
+
 });

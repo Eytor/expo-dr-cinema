@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import AntIcon from 'react-native-vector-icons/AntDesign';
 import defaultStyles from '../../resources/defaultStyles';
 import { getAuthToken, getAllCinemas } from '../../service/services';
 import styles from './CinemaScreen.styles';
@@ -66,20 +67,27 @@ class CinemaScreen extends Component {
                     this.state.isLoading && defaultStyles.center,
                 ]}
             >
-                <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('UpcomingMovies', { title: 'Upcoming Movies' })}
-                >
-                    <Text>Upcoming Movies</Text>
-                </TouchableOpacity>
                 {this.state.isLoading ? (
                     <View style={defaultStyles.loaderWrapper}>
                         <ActivityIndicator size="large" color="#383B53" />
                     </View>
                 ) : (
-                    <ScrollView style={styles.cinemaWrapper}>
-                        {cinemas}
-                    </ScrollView>
-                )}
+                        <View style={{ flex: 1 }}>
+                            <TouchableOpacity
+                                style={styles.upComingMoviesBtn}
+                                onPress={() => this.props.navigation.navigate('UpcomingMovies', { title: 'Upcoming Movies' })}
+                            >
+                                <Text style={styles.upComingMoviesBtnText}>Væntanlega kvikmyndir</Text>
+                                <AntIcon name="arrowright" color="#fff" size={20} />
+                            </TouchableOpacity>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[defaultStyles.largeHeading, { paddingLeft: 15 }]}>Kvikmyndahús</Text>
+                                <ScrollView style={styles.cinemaWrapper}>
+                                    {cinemas}
+                                </ScrollView>
+                            </View>
+                        </View>
+                    )}
             </View>
         );
     }

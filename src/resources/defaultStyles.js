@@ -18,4 +18,9 @@ export default StyleSheet.create({
         color: Colors.white,
         marginBottom: 15,
     },
+    largeHeading: {
+        fontSize: 24,
+        color: Colors.white,
+        marginBottom: 15,
+    },
 });

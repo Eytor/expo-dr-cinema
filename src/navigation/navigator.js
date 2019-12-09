@@ -9,9 +9,10 @@ const AppNavigator = createStackNavigator({
     Home: {
         screen: CinemaScreen,
         navigationOptions: () => ({
-            headerTitle: 'All cinemas',
+            headerTitle: 'Hvað er í bíó?',
             headerTitleStyle: {
                 color: '#fff',
+                fontWeight: '400',
             },
             headerStyle: {
                 backgroundColor: Colors.dark,
