@@ -5,13 +5,13 @@ import {
     ScrollView,
     Image,
     Dimensions,
-    TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { Linking } from 'expo';
 import { connect } from 'react-redux';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './MovieDetailScreen.styles';
+import ShowTime from '../../components/ShowTime/ShowTime';
+import Genre from '../../components/Genre/Genre';
 
 class MovieDetailScreen extends Component {
     render() {
@@ -20,15 +20,17 @@ class MovieDetailScreen extends Component {
         const imageWidth = (dimensions.width - 30);
         const imageHeight = (dimensions.height) - 95;
         const genres = movie.genres.map((genre) => (
-            <View key={genre.ID}>
-                <Text style={styles.genre}>{genre.Name}</Text>
-            </View>
+            <Genre
+                Name={genre.Name}
+            />
         ));
         const showtimes = movie.showtimes.map((showtime, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <TouchableOpacity onPress={() => Linking.openURL(showtime.purchase_url)} key={index}>
-                <Text style={styles.buyNow}>{`Kaupa miða klukkan ${showtime.time.split(' ')[0]} í sal ${showtime.time.split(' ')[1]}`}</Text>
-            </TouchableOpacity>
+            <ShowTime
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
+                showtime={showtime}
+                index={index}
+            />
         ));
         return (
             <ScrollView style={{ flex: 1 }}>

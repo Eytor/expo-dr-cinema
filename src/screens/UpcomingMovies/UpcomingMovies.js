@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import {
-    ScrollView, Dimensions, View, Text,
+    ScrollView, Dimensions, View, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { getUpcomingMovies } from '../../service/services';
 import UpcomingMovie from '../../components/UpcomingMovie/UpcomingMovie';
-import styles from './UpcomingMovies.styles';
 import defaultStyles from '../../resources/defaultStyles';
 import { setUpcomingMovie } from '../../actions/movieActions';
 
@@ -34,8 +33,8 @@ class UpcomingMovies extends Component {
 
     render() {
         const dimensions = Dimensions.get('window');
-        const imageHeight = ((dimensions.width - 60) * 10) / 6.75;
-        const imageWidth = (dimensions.width - 60);
+        const imageHeight = ((dimensions.width - 30) * 10) / 6.75;
+        const imageWidth = (dimensions.width - 30);
         const movieList = this.state.movies.map((movie) => (
             <UpcomingMovie
                 key={movie.id}
@@ -46,14 +45,19 @@ class UpcomingMovies extends Component {
             />
         ));
         return (
-            <ScrollView style={styles.movieList}>
-                <View>
-                    <Text style={defaultStyles.heading}>
-                        Væntanlegar Kvikmyndir í bíó
-                    </Text>
-                </View>
-                {movieList}
-            </ScrollView>
+            <View style={[defaultStyles.container, movieList.length === 0 && ({ justifyContent: 'center', alignItems: 'center' })]}>
+                {
+                    movieList.length > 0 ? (
+                        <ScrollView>
+                            <View style={{ flex: 1, paddingHorizontal: 15 }}>
+                                {movieList}
+                            </View>
+                        </ScrollView>
+                    ) : (
+                        <ActivityIndicator size="large" color="#383B53" />
+                    )
+                }
+            </View>
         );
     }
 }

@@ -40,9 +40,31 @@ class CinemaDetailScreen extends Component {
         });
     }
 
-    selectMovie(id, name, poster, plot, duration, releaseYear, genres, showtimes, certificateColor) {
-        const itsShowtime = showtimes.filter((showTime) => showTime.cinema.id === this.props.cinema.id)[0].schedule;
-        this.props.setMovie(id, name, poster, plot, duration, releaseYear, genres, itsShowtime, certificateColor);
+    selectMovie(
+        id,
+        name,
+        poster,
+        plot,
+        duration,
+        releaseYear,
+        genres,
+        showtimes,
+        certificateColor,
+    ) {
+        const itsShowtime = showtimes.filter(
+            (showTime) => showTime.cinema.id === this.props.cinema.id,
+        )[0].schedule;
+        this.props.setMovie(
+            id,
+            name,
+            poster,
+            plot,
+            duration,
+            releaseYear,
+            genres,
+            itsShowtime,
+            certificateColor,
+        );
         this.props.navigation.navigate('MovieDetailScreen', { title: name });
     }
 

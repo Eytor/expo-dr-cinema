@@ -72,22 +72,24 @@ class CinemaScreen extends Component {
                         <ActivityIndicator size="large" color="#383B53" />
                     </View>
                 ) : (
+                    <View style={{ flex: 1 }}>
+                        <TouchableOpacity
+                            style={styles.upComingMoviesBtn}
+                            onPress={() => this.props.navigation.navigate('UpcomingMovies', { title: 'Upcoming Movies' })}
+                        >
+                            <Text style={styles.upComingMoviesBtnText}>Væntanlega kvikmyndir</Text>
+                            <AntIcon name="arrowright" color="#fff" size={20} />
+                        </TouchableOpacity>
                         <View style={{ flex: 1 }}>
-                            <TouchableOpacity
-                                style={styles.upComingMoviesBtn}
-                                onPress={() => this.props.navigation.navigate('UpcomingMovies', { title: 'Upcoming Movies' })}
-                            >
-                                <Text style={styles.upComingMoviesBtnText}>Væntanlega kvikmyndir</Text>
-                                <AntIcon name="arrowright" color="#fff" size={20} />
-                            </TouchableOpacity>
-                            <View style={{ flex: 1 }}>
-                                <Text style={[defaultStyles.largeHeading, { paddingLeft: 15 }]}>Kvikmyndahús</Text>
-                                <ScrollView style={styles.cinemaWrapper}>
-                                    {cinemas}
-                                </ScrollView>
-                            </View>
+                            <Text style={[defaultStyles.largeHeading, { paddingLeft: 15 }]}>
+                                Kvikmyndahús
+                            </Text>
+                            <ScrollView style={styles.cinemaWrapper}>
+                                {cinemas}
+                            </ScrollView>
                         </View>
-                    )}
+                    </View>
+                )}
             </View>
         );
     }
