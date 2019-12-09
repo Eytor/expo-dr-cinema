@@ -47,7 +47,7 @@ class CinemaScreen extends Component {
 
     selectCinema(cinema) {
         this.props.setCinema(cinema.id, cinema.name, cinema['address\t'], cinema.city, cinema.phone, cinema.website, cinema.description);
-        this.props.navigation.navigate('CinemaDetailScreen');
+        this.props.navigation.navigate('CinemaDetailScreen', { title: cinema.name });
     }
 
     render() {

@@ -1,6 +1,7 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import CinemaScreen from '../screens/CinemaScreen/CinemaScreen';
 import CinemaDetailScreen from '../screens/CinemaDetailScreen/CinemaDetailScreen';
+import MovieDetailScreen from '../screens/MovieDetailScreen/MovieDetailScreen';
 import Colors from '../resources/Colors';
 
 const AppNavigator = createStackNavigator({
@@ -18,7 +19,31 @@ const AppNavigator = createStackNavigator({
     },
     CinemaDetailScreen: {
         screen: CinemaDetailScreen,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: navigation.state.params.title,
+            headerTitleStyle: {
+                color: '#fff',
+            },
+            headerTintColor: '#fff',
+            headerStyle: {
+                backgroundColor: Colors.dark,
+            },
+        }),
+    },
+    MovieDetailScreen: {
+        screen: MovieDetailScreen,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: navigation.state.params.title,
+            headerTitleStyle: {
+                color: '#fff',
+            },
+            headerTintColor: '#fff',
+            headerStyle: {
+                backgroundColor: Colors.dark,
+            },
+        }),
     },
 });
+
 
 export default AppNavigator;

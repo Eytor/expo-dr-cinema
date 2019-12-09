@@ -5,13 +5,14 @@ import {
     ScrollView,
     Image,
     Dimensions,
+    TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './CinemaDetailScreen.styles';
 import { getAllMovies } from '../../service/services';
+import { setMovie } from '../../actions/movieActions';
 
 class CinemaDetailScreen extends Component {
     constructor(props) {
@@ -36,13 +37,28 @@ class CinemaDetailScreen extends Component {
         });
     }
 
+    selectMovie(id, name, poster, plot, duration, releaseYear, genres) {
+        setMovie(id, name, poster, plot, duration, releaseYear, genres);
+        console.log('time to navigate');
+        this.props.navigation.navigate('MovieDetailsScreen', { title: name });
+    }
+
     render() {
         const { cinema } = this.props;
         const dimensions = Dimensions.get('window');
         const imageHeight = 445;
         const imageWidth = dimensions.width;
         const movies = this.state.relatedMovies.map((movie) => (
-            <TouchableOpacity key={movie.id}>
+            <TouchableOpacity
+                key={movie.id}
+                onPress={() => this.selectMovie(movie.id,
+                    movie.title,
+                    movie.poster,
+                    movie.plot,
+                    movie.durationMinutes,
+                    movie.year,
+                    movie.genres)}
+            >
                 <View style={styles.movieWrapper}>
                     <View style={styles.infoBoxTop}>
                         <Text style={styles.movieHeading}>
@@ -84,7 +100,14 @@ class CinemaDetailScreen extends Component {
                             <Text style={styles.headerText}>{cinema.name}</Text>
                         </View>
                         <View style={styles.body}>
-                            <Text style={styles.description}>{cinema.description.replace(/<\/?[^>]+(>|$)/g, '')}</Text>
+                            <Text style={styles.description}>
+                                {cinema.description.replace(/<\/?[^>]+(>|$)/g, '')}
+                            </Text>
+                        </View>
+                        <View style={styles.footer}>
+                            <Text style={styles.footerText}>
+                                {`${cinema.address}, ${cinema.city}`}
+                            </Text>
                         </View>
                         <View style={styles.footer}>
                             <Text style={styles.footerText}>
@@ -111,7 +134,7 @@ class CinemaDetailScreen extends Component {
 }
 
 CinemaDetailScreen.propTypes = {
-    // navigation: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired,
     token: PropTypes.string.isRequired,
     cinema: PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -136,4 +159,4 @@ const mapStateToProps = ({ token, cinema }) => ({
     cinema,
 });
 
-export default connect(mapStateToProps)(CinemaDetailScreen);
+export default connect(mapStateToProps, { setMovie })(CinemaDetailScreen);
