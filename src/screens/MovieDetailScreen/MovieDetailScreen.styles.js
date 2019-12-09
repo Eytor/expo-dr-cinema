@@ -3,66 +3,62 @@ import Colors from '../../resources/Colors';
 
 
 export default StyleSheet.create({
-    cinemaMeta: {
-        flex: 1,
-        justifyContent: 'space-between',
-        paddingHorizontal: 15,
-        backgroundColor: Colors.charcoal,
+    movieWrapper: {
         borderRadius: 15,
+        backgroundColor: Colors.charcoal,
+        position: 'relative',
         marginBottom: 15,
     },
-    header: {
-        height: 50,
-        justifyContent: 'center',
-    },
-    headerText: {
-        fontSize: 20,
-        color: Colors.white,
-    },
-    description: {
-        color: Colors.gray,
-        fontSize: 12,
-        lineHeight: 16,
-    },
-    footer: {
-        height: 50,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    footerText: {
-        fontSize: 12,
-        color: Colors.gray,
-    },
-    movieList: {
-        flex: 1,
-        padding: 15,
-        backgroundColor: Colors.charcoal,
+    moviePosterWrapper: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        overflow: 'hidden',
         borderRadius: 15,
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
     },
-    movieWrapper: {
-        flex: 1,
-        marginBottom: 30,
-        alignItems: 'center',
-    },
-    movieHeading: {
-        fontSize: 14,
-        color: Colors.white,
-    },
-    infoBoxTop: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-        padding: 15,
-        backgroundColor: Colors.lightblue,
+    moviePoster: {
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
     },
-    infoBoxBottom: {
-        width: '100%',
-        padding: 15,
-        backgroundColor: Colors.lightblue,
-        borderBottomLeftRadius: 15,
-        borderBottomRightRadius: 15,
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 15,
+    },
+    certificateDot: {
+        width: 10,
+        height: 10,
+        marginLeft: 10,
+        borderRadius: 10,
+    },
+    headerText: {
+        color: Colors.white,
+        fontSize: 16,
+    },
+    body: {
+        marginBottom: 15,
+    },
+    plotText: {
+        fontSize: 14,
+        lineHeight: 18,
+        color: Colors.gray,
+    },
+    genresWrapper: {
+        marginBottom: 15,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+    },
+    genre: {
+        color: Colors.gray,
+        marginRight: 10,
+        fontSize: 14,
+    },
+    buyNow: {
+        fontSize: 14,
+        color: Colors.white,
+        paddingVertical: 5,
     },
 });

@@ -4,66 +4,72 @@ import {
     Text,
     ScrollView,
     Image,
+    Dimensions,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import { Linking } from 'expo';
 import { connect } from 'react-redux';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './MovieDetailScreen.styles';
 
 class MovieDetailScreen extends Component {
     render() {
         const { movie } = this.props;
+        const dimensions = Dimensions.get('window');
+        const imageWidth = (dimensions.width - 30);
+        const imageHeight = (dimensions.height) - 95;
         const genres = movie.genres.map((genre) => (
             <View key={genre.ID}>
-                <Text>{genre.Name}</Text>
+                <Text style={styles.genre}>{genre.Name}</Text>
             </View>
         ));
         const showtimes = movie.showtimes.map((showtime, index) => (
             // eslint-disable-next-line react/no-array-index-key
-            <View key={index}>
-                <Text>{showtime.time}</Text>
-                <Text>{showtime.purchase_url}</Text>
-            </View>
+            <TouchableOpacity onPress={() => Linking.openURL(showtime.purchase_url)} key={index}>
+                <Text style={styles.buyNow}>{`Kaupa miða klukkan ${showtime.time.split(' ')[0]} í sal ${showtime.time.split(' ')[1]}`}</Text>
+            </TouchableOpacity>
         ));
         return (
-            <View style={[defaultStyles.container, { paddingHorizontal: 15 }]}>
-                <ScrollView style={{ flex: 1 }}>
-                    <View style={styles.cinemaMeta}>
-                        <View style={styles.header}>
-                            <Text style={styles.headerText}>{movie.name}</Text>
-                        </View>
+            <ScrollView style={{ flex: 1 }}>
+                <View style={[defaultStyles.container, { paddingHorizontal: 15 }]}>
+                    <View style={styles.movieWrapper}>
                         <Image
-                            style={{
-                                width: 100,
-                                height: 200,
-                                position: 'relative',
-                                top: 0,
-                                bottom: 0,
-                                left: 0,
-                                right: 0,
-                            }}
-                            resizeMode="contain"
+                            style={[styles.moviePoster, { width: imageWidth, height: imageHeight }]}
+                            resizeMode="cover"
                             source={{ uri: movie.poster }}
                         />
-                        <View style={styles.body}>
-                            <Text style={styles.description}>
-                                {movie.plot}
-                            </Text>
-                        </View>
-                        <View style={styles.footer}>
-                            <Text style={styles.footerText}>
-                                {`${movie.duration} mínútur`}
-                            </Text>
+                        <View style={{ padding: 15 }}>
+                            <View style={styles.header}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    <Text style={styles.headerText}>{movie.name}</Text>
+                                    <View style={[styles.certificateDot, { backgroundColor: movie.certificateColor }]} />
+                                </View>
+                                <Text style={styles.headerText}>
+                                    {`${movie.duration} mínútur`}
+                                </Text>
+                            </View>
+                            <View style={styles.body}>
+                                <Text style={styles.plotText}>
+                                    {movie.plot.replace(/\n/g, '')}
+                                </Text>
+                            </View>
+                            <View style={styles.footer}>
+                                <Text style={styles.headerText}>Flokkar:</Text>
+                                <View style={styles.genresWrapper}>
+                                    {genres}
+                                </View>
+                            </View>
                         </View>
                     </View>
-                    <View style={styles.movieList}>
-                        {genres}
-                    </View>
-                    <View style={styles.movieList}>
+                    <View style={[styles.movieWrapper, { padding: 15 }]}>
+                        <Text style={[styles.headerText, { marginBottom: 15 }]}>
+                            {`Sýningar í dag í ${this.props.cinema.name}`}
+                        </Text>
                         {showtimes}
                     </View>
-                </ScrollView>
-            </View>
+                </View>
+            </ScrollView>
         );
     }
 }
@@ -80,13 +86,15 @@ MovieDetailScreen.propTypes = {
         releaseYear: PropTypes.string.isRequired,
         genres: PropTypes.array.isRequired,
         showtimes: PropTypes.array.isRequired,
+        certificateColor: PropTypes.string.isRequired,
     }).isRequired,
 };
 
 
-const mapStateToProps = ({ token, movie }) => ({
+const mapStateToProps = ({ token, movie, cinema }) => ({
     token,
     movie,
+    cinema,
 });
 
 export default connect(mapStateToProps)(MovieDetailScreen);

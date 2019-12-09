@@ -9,6 +9,7 @@ const initialState = {
     website: '',
     description: '',
     showtimes: [],
+    certificateColor: '',
 };
 
 export default function (state = initialState, action) {
