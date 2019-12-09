@@ -13,7 +13,8 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
     case constants.CHANGE_MOVIE:
-        console.log('inside movie reducer: ', action.payload);
+        return action.payload;
+    case constants.CHANGE_UPCOMING_MOVIE:
         return action.payload;
     default: return state;
     }
