@@ -16,6 +16,7 @@ export default StyleSheet.create({
         color: Colors.white,
         fontSize: 14,
         marginBottom: 5,
+        marginRight: 10,
     },
     movieposterWrapper: {
         flex: 1,
@@ -44,7 +45,7 @@ export default StyleSheet.create({
         borderBottomLeftRadius: 15,
         borderBottomRightRadius: 15,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         flexWrap: 'wrap',
     },
 });
