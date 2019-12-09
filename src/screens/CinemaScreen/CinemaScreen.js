@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text,
     ActivityIndicator,
     ScrollView,
-    TouchableOpacity,
 } from 'react-native';
-import AntIcon from 'react-native-vector-icons/AntDesign';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -15,10 +12,12 @@ import { getAuthToken, getAllCinemas } from '../../service/services';
 import styles from './CinemaScreen.styles';
 import { setToken } from '../../actions/tokenActions';
 import { setCinema } from '../../actions/cinemaActions';
+import Cinema from '../../components/Cinemas';
 
 class CinemaScreen extends Component {
     constructor(props) {
         super(props);
+        this.selectCinema = this.selectCinema.bind(this);
         this.state = {
             cinemaList: [],
             isLoading: true,
@@ -52,19 +51,11 @@ class CinemaScreen extends Component {
 
     render() {
         const cinemas = this.state.cinemaList.map((cinema) => (
-            <TouchableOpacity
-                onPress={() => this.selectCinema(cinema)}
-                style={styles.cinemaItem}
+            <Cinema
                 key={cinema.id}
-            >
-                <View style={styles.cinemaTextWrapper}>
-                    <Text style={styles.cinemaItemText}>{cinema.name}</Text>
-                    <Text style={styles.cinemaWebsite}>{cinema.website}</Text>
-                </View>
-                <View style={styles.cinemaIconWrapper}>
-                    <AntIcon name="arrowright" color="#fff" size={20} />
-                </View>
-            </TouchableOpacity>
+                cinema={cinema}
+                selectCinema={this.selectCinema}
+            />
         ));
         return (
             <View
