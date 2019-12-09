@@ -40,29 +40,4 @@ export default StyleSheet.create({
         backgroundColor: Colors.charcoal,
         borderRadius: 15,
     },
-    movieWrapper: {
-        flex: 1,
-        marginBottom: 30,
-        alignItems: 'center',
-    },
-    movieHeading: {
-        fontSize: 14,
-        color: Colors.white,
-    },
-    infoBoxTop: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-        padding: 15,
-        backgroundColor: Colors.lightblue,
-        borderTopLeftRadius: 15,
-        borderTopRightRadius: 15,
-    },
-    infoBoxBottom: {
-        width: '100%',
-        padding: 15,
-        backgroundColor: Colors.lightblue,
-        borderBottomLeftRadius: 15,
-        borderBottomRightRadius: 15,
-    },
 });

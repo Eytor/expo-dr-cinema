@@ -3,6 +3,7 @@ const Colors = {
     darkgray: '#252525',
     gray: '#909590',
     charcoal: '#383B53',
+    independence: '#4A4C62',
     blue: '#0267C1',
     lightblue: '#3F88C5',
     success: '#008148',
