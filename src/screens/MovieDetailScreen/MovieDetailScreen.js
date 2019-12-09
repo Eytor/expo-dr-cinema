@@ -5,11 +5,11 @@ import {
     ScrollView,
     Image,
     Dimensions,
+    TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Linking } from 'expo';
 import { connect } from 'react-redux';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './MovieDetailScreen.styles';
 
@@ -43,7 +43,12 @@ class MovieDetailScreen extends Component {
                             <View style={styles.header}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                     <Text style={styles.headerText}>{movie.name}</Text>
-                                    <View style={[styles.certificateDot, { backgroundColor: movie.certificateColor }]} />
+                                    <View style={
+                                        [styles.certificateDot,
+                                            { backgroundColor: movie.certificateColor },
+                                        ]
+                                    }
+                                    />
                                 </View>
                                 <Text style={styles.headerText}>
                                     {`${movie.duration} mínútur`}
@@ -77,6 +82,7 @@ class MovieDetailScreen extends Component {
 MovieDetailScreen.propTypes = {
     // navigation: PropTypes.object.isRequired,
     // token: PropTypes.string.isRequired,
+    cinema: PropTypes.object.isRequired,
     movie: PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
