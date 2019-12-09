@@ -3,33 +3,10 @@ import {
     TouchableOpacity, View, Text, Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import styles from './MovieDetails.styles';
+import styles from './UpcomingMovie.styles';
 import Colors from '../../resources/Colors';
 
 class MovieDetails extends Component {
-    getCertificateColor = () => {
-        const { certificate } = this.props;
-        if (!certificate) {
-            return Colors.success;
-        }
-        if (typeof certificate === 'object' && certificate !== null) {
-            return certificate.is === 'N/A' ? Colors.success : Colors.danger;
-        }
-        if (certificate === 'Öllum leyfð') {
-            return Colors.success;
-        }
-
-        if (certificate === '6 ára' || certificate === '9 ára') {
-            return Colors.lightblue;
-        }
-
-        if (certificate === '12 ára') {
-            return Colors.warning;
-        }
-
-        return Colors.danger;
-    }
-
     render() {
         const {
             imageHeight,
@@ -37,7 +14,10 @@ class MovieDetails extends Component {
             movie,
             selectMovie,
         } = this.props;
-        const certicateColor = this.getCertificateColor();
+        const months = ['janúar', 'febrúar', 'mars', 'apríl', 'maí', 'júní', 'júlí', 'ágúst', 'september', 'október', 'nóvember', 'desember'];
+        const releaseDate = new Date(movie['release-dateIS']);
+        const month = months[releaseDate.getMonth()];
+        const newDate = `${releaseDate.getDate()}. ${month} ${releaseDate.getFullYear()}`;
         return (
             <TouchableOpacity
                 key={movie.id}
@@ -48,16 +28,15 @@ class MovieDetails extends Component {
                     movie.durationMinutes,
                     movie.year,
                     movie.genres,
-                    movie.showtimes,
-                    certicateColor)}
+                    movie.showtimes)}
             >
                 <View style={styles.movieWrapper}>
-                    <View style={[styles.infoBoxTop, { backgroundColor: certicateColor }]}>
+                    <View style={[styles.infoBoxTop, { backgroundColor: Colors.success }]}>
                         <Text style={styles.movieHeading}>
                             {movie.title}
                         </Text>
                         <Text style={styles.movieHeading}>
-                            {movie.year}
+                            {newDate}
                         </Text>
                     </View>
                     <Image
@@ -68,14 +47,7 @@ class MovieDetails extends Component {
                         resizeMode="contain"
                         source={{ uri: movie.poster }}
                     />
-                    <View style={[styles.infoBoxBottom, { backgroundColor: certicateColor }]}>
-                        {movie.genres.map((genre, index) => (
-                            // eslint-disable-next-line react/no-array-index-key
-                            <View key={index}>
-                                <Text style={styles.movieGenre}>{genre.Name}</Text>
-                            </View>
-                        ))}
-                    </View>
+                    <View style={[styles.infoBoxBottom, { backgroundColor: Colors.success }]} />
                 </View>
             </TouchableOpacity>
 
@@ -88,14 +60,6 @@ MovieDetails.propTypes = {
     imageHeight: PropTypes.number.isRequired,
     imageWidth: PropTypes.number.isRequired,
     movie: PropTypes.object.isRequired,
-    certificate: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object,
-    ]),
-};
-
-MovieDetails.defaultProps = {
-    certificate: null,
 };
 
 export default MovieDetails;
