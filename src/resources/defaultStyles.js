@@ -13,4 +13,9 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    heading: {
+        fontSize: 18,
+        color: Colors.white,
+        marginBottom: 15,
+    },
 });

@@ -30,7 +30,7 @@ export function getAllMovies(token) {
         },
     }).then((response) => {
         if (response.status >= 200 && response.status < 300) {
-            return response.text();
+            return response.json();
         }
         throw new Error('error', response);
     }).catch((error) => { console.log(error); });
@@ -39,7 +39,6 @@ export function getAllMovies(token) {
 
 export function getAllCinemas(token) {
     const url = 'http://api.kvikmyndir.is/theaters';
-    console.log(url);
     return fetch(url, {
         method: 'GET',
         headers: {
