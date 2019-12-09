@@ -8,18 +8,22 @@ import Colors from '../../resources/Colors';
 
 class CinemaDetails extends Component {
     getCertificateColor = () => {
-        if (typeof this.props.certificate === 'object' && this.props.certificate !== null) {
-            return this.props.certificate.is === 'N/A' ? Colors.success : Colors.danger;
+        const { certificate } = this.props;
+        if (!certificate) {
+            return Colors.success;
         }
-        if (this.props.certificate === 'Öllum leyfð') {
+        if (typeof certificate === 'object' && certificate !== null) {
+            return certificate.is === 'N/A' ? Colors.success : Colors.danger;
+        }
+        if (certificate === 'Öllum leyfð') {
             return Colors.success;
         }
 
-        if (this.props.certificate === '6 ára' || this.props.certificate === '9 ára') {
+        if (certificate === '6 ára' || certificate === '9 ára') {
             return Colors.lightblue;
         }
 
-        if (this.props.certificate === '12 ára') {
+        if (certificate === '12 ára') {
             return Colors.warning;
         }
 
@@ -63,8 +67,9 @@ class CinemaDetails extends Component {
                         source={{ uri: movie.poster }}
                     />
                     <View style={[styles.infoBoxBottom, { backgroundColor: this.getCertificateColor() }]}>
-                        {movie.genres.map((genre) => (
-                            <View key={genre.ID}>
+                        {movie.genres.map((genre, index) => (
+                            // eslint-disable-next-line react/no-array-index-key
+                            <View key={index}>
                                 <Text style={styles.movieGenre}>{genre.Name}</Text>
                             </View>
                         ))}
@@ -84,7 +89,11 @@ CinemaDetails.propTypes = {
     certificate: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object,
-    ]).isRequired,
+    ]),
+};
+
+CinemaDetails.defaultProps = {
+    certificate: null,
 };
 
 export default CinemaDetails;
