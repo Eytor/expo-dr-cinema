@@ -5,6 +5,7 @@ import {
 import PropTypes from 'prop-types';
 import styles from './MovieDetails.styles';
 import Colors from '../../resources/Colors';
+import Genre from '../Genre/Genre';
 
 class MovieDetails extends Component {
     getCertificateColor = () => {
@@ -69,11 +70,12 @@ class MovieDetails extends Component {
                         source={{ uri: movie.poster }}
                     />
                     <View style={[styles.infoBoxBottom, { backgroundColor: certicateColor }]}>
-                        {movie.genres.map((genre, index) => (
+                        {movie.genres.map((genre) => (
                             // eslint-disable-next-line react/no-array-index-key
-                            <View key={index}>
-                                <Text style={styles.movieGenre}>{genre.Name}</Text>
-                            </View>
+                            <Genre
+                                key={genre.ID}
+                                Name={genre.Name}
+                            />
                         ))}
                     </View>
                 </View>
