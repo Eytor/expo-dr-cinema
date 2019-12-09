@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './MovieDetailScreen.styles';
 import ShowTime from '../../components/ShowTime/ShowTime';
+import Genre from '../../components/Genre/Genre';
 
 class MovieDetailScreen extends Component {
     render() {
@@ -19,9 +20,9 @@ class MovieDetailScreen extends Component {
         const imageWidth = (dimensions.width - 30);
         const imageHeight = (dimensions.height) - 95;
         const genres = movie.genres.map((genre) => (
-            <View key={genre.ID}>
-                <Text style={styles.genre}>{genre.Name}</Text>
-            </View>
+            <Genre
+                Name={genre.Name}
+            />
         ));
         const showtimes = movie.showtimes.map((showtime, index) => (
             // eslint-disable-next-line react/no-array-index-key
