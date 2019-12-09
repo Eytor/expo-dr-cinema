@@ -4,6 +4,7 @@ import {
     Text,
     ScrollView,
     Dimensions,
+    ActivityIndicator,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -12,6 +13,7 @@ import defaultStyles from '../../resources/defaultStyles';
 import styles from './CinemaDetailScreen.styles';
 import { getAllMovies } from '../../service/services';
 import { setMovie } from '../../actions/movieActions';
+import Colors from '../../resources/Colors';
 import MovieDetails from '../../components/MovieDetails/MovieDetails';
 
 class CinemaDetailScreen extends Component {
@@ -93,8 +95,7 @@ class CinemaDetailScreen extends Component {
                                 {`Í ${cinema.name} núna`}
                             </Text>
                         </View>
-
-                        {movies}
+                        {movies.length > 0 ? movies : <ActivityIndicator size="small" color={Colors.gray} />}
                     </View>
                 </ScrollView>
             </View>
