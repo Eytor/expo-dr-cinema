@@ -3,10 +3,12 @@ import {
     View,
     ActivityIndicator,
     ScrollView,
+    Text,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import defaultStyles from '../../resources/defaultStyles';
 import { getAuthToken, getAllCinemas } from '../../service/services';
 import styles from './CinemaScreen.styles';
@@ -64,6 +66,11 @@ class CinemaScreen extends Component {
                     this.state.isLoading && defaultStyles.center,
                 ]}
             >
+                <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('UpcomingMovies', { title: 'Upcoming Movies' })}
+                >
+                    <Text>Upcoming Movies</Text>
+                </TouchableOpacity>
                 {this.state.isLoading ? (
                     <View style={defaultStyles.loaderWrapper}>
                         <ActivityIndicator size="large" color="#383B53" />
