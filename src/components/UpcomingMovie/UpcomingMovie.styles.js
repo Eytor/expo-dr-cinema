@@ -9,7 +9,7 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     movieHeading: {
-        fontSize: 14,
+        fontSize: 16,
         color: Colors.white,
     },
     movieGenre: {
@@ -21,8 +21,9 @@ export default StyleSheet.create({
         flex: 1,
         alignItems: 'center',
     },
-    movieposter: {
-        alignSelf: 'stretch',
+    moviePoster: {
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5,
     },
     infoBoxTop: {
         position: 'relative',
@@ -31,20 +32,8 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         width: '100%',
         padding: 15,
-        backgroundColor: Colors.danger,
+        backgroundColor: Colors.charcoal,
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
-    },
-    infoBoxBottom: {
-        position: 'relative',
-        top: -2,
-        width: '100%',
-        padding: 15,
-        backgroundColor: Colors.warning,
-        borderBottomLeftRadius: 15,
-        borderBottomRightRadius: 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
     },
 });

@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './UpcomingMovie.styles';
-import Colors from '../../resources/Colors';
 
 class MovieDetails extends Component {
     render() {
@@ -31,7 +30,7 @@ class MovieDetails extends Component {
                     movie.showtimes)}
             >
                 <View style={styles.movieWrapper}>
-                    <View style={[styles.infoBoxTop, { backgroundColor: Colors.success }]}>
+                    <View style={[styles.infoBoxTop]}>
                         <Text style={styles.movieHeading}>
                             {movie.title}
                         </Text>
@@ -40,14 +39,10 @@ class MovieDetails extends Component {
                         </Text>
                     </View>
                     <Image
-                        style={{
-                            width: imageWidth,
-                            height: imageHeight,
-                        }}
+                        style={[styles.moviePoster, { width: imageWidth, height: imageHeight }]}
                         resizeMode="contain"
                         source={{ uri: movie.poster }}
                     />
-                    <View style={[styles.infoBoxBottom, { backgroundColor: Colors.success }]} />
                 </View>
             </TouchableOpacity>
 
