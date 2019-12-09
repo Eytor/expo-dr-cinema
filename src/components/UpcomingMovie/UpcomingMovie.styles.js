@@ -22,8 +22,8 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     moviePoster: {
-        borderBottomLeftRadius: 5,
-        borderBottomRightRadius: 5,
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8,
     },
     infoBoxTop: {
         position: 'relative',
