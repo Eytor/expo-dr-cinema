@@ -18,6 +18,13 @@ class MovieDetailScreen extends Component {
                 <Text>{genre.Name}</Text>
             </View>
         ));
+        const showtimes = movie.showtimes.map((showtime, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <View key={index}>
+                <Text>{showtime.time}</Text>
+                <Text>{showtime.purchase_url}</Text>
+            </View>
+        ));
         return (
             <View style={[defaultStyles.container, { paddingHorizontal: 15 }]}>
                 <ScrollView style={{ flex: 1 }}>
@@ -52,6 +59,9 @@ class MovieDetailScreen extends Component {
                     <View style={styles.movieList}>
                         {genres}
                     </View>
+                    <View style={styles.movieList}>
+                        {showtimes}
+                    </View>
                 </ScrollView>
             </View>
         );
@@ -69,6 +79,7 @@ MovieDetailScreen.propTypes = {
         duration: PropTypes.number.isRequired,
         releaseYear: PropTypes.string.isRequired,
         genres: PropTypes.array.isRequired,
+        showtimes: PropTypes.array.isRequired,
     }).isRequired,
 };
 

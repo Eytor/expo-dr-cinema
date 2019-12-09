@@ -8,6 +8,7 @@ const initialState = {
     phone: 0,
     website: '',
     description: '',
+    showtimes: [],
 };
 
 export default function (state = initialState, action) {
