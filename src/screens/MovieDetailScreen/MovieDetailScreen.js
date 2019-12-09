@@ -14,8 +14,15 @@ class MovieDetailScreen extends Component {
     render() {
         const { movie } = this.props;
         const genres = movie.genres.map((genre) => (
-            <View>
+            <View key={genre.ID}>
                 <Text>{genre.Name}</Text>
+            </View>
+        ));
+        const showtimes = movie.showtimes.map((showtime, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <View key={index}>
+                <Text>{showtime.time}</Text>
+                <Text>{showtime.purchase_url}</Text>
             </View>
         ));
         return (
@@ -40,7 +47,7 @@ class MovieDetailScreen extends Component {
                         />
                         <View style={styles.body}>
                             <Text style={styles.description}>
-                                {movie.plot.replace(/<\/?[^>]+(>|$)/g, '')}
+                                {movie.plot}
                             </Text>
                         </View>
                         <View style={styles.footer}>
@@ -51,6 +58,9 @@ class MovieDetailScreen extends Component {
                     </View>
                     <View style={styles.movieList}>
                         {genres}
+                    </View>
+                    <View style={styles.movieList}>
+                        {showtimes}
                     </View>
                 </ScrollView>
             </View>
@@ -69,6 +79,7 @@ MovieDetailScreen.propTypes = {
         duration: PropTypes.number.isRequired,
         releaseYear: PropTypes.string.isRequired,
         genres: PropTypes.array.isRequired,
+        showtimes: PropTypes.array.isRequired,
     }).isRequired,
 };
 

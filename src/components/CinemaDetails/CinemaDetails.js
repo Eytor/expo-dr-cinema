@@ -42,7 +42,8 @@ class CinemaDetails extends Component {
                     movie.plot,
                     movie.durationMinutes,
                     movie.year,
-                    movie.genres)}
+                    movie.genres,
+                    movie.showtimes)}
             >
                 <View style={styles.movieWrapper}>
                     <View style={[styles.infoBoxTop, { backgroundColor: this.getCertificateColor() }]}>
