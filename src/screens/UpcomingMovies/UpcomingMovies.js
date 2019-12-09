@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import { ScrollView, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getUpcomingMovies } from '../../service/services';
@@ -14,35 +14,29 @@ class UpcomingMovies extends Component {
     }
 
     componentDidMount() {
-        getUpcomingMovies(this.props.token).then((movies) => this.setState({ movies }));
+        getUpcomingMovies(this.props.token).then((movies) => this.setState({
+            movies: movies.sort((a, b) => new Date(b['release-dateIS']) - new Date(a['release-dateIS'])),
+        }));
     }
 
 
     render() {
-        // selectMovie: PropTypes.func.isRequired,
-        // imageHeight: PropTypes.number.isRequired,
-        // imageWidth: PropTypes.number.isRequired,
-        // movie: PropTypes.object.isRequired,
-        // certificate: PropTypes.oneOfType([
-        //     PropTypes.string,
-        //     PropTypes.object,
-        // ]).isRequired,
         const dimensions = Dimensions.get('window');
         const imageHeight = ((dimensions.width - 60) * 10) / 6.75;
         const imageWidth = (dimensions.width - 60);
         const movieList = this.state.movies.map((movie) => (
             <CinemaDetails
+                key={movie.id}
                 selectMovie={() => {}}
                 imageHeight={imageHeight}
                 imageWidth={imageWidth}
                 movie={movie}
-                certificate={movie.certificateIS}
             />
         ));
         return (
-            <View>
+            <ScrollView>
                 {movieList}
-            </View>
+            </ScrollView>
         );
     }
 }
