@@ -11,12 +11,13 @@ class CinemaDetails extends Component {
             imageHeight,
             imageWidth,
             movie,
+            selectMovie,
 
         } = this.props;
         return (
             <TouchableOpacity
                 key={movie.id}
-                onPress={() => this.selectMovie(movie.id,
+                onPress={() => selectMovie(movie.id,
                     movie.title,
                     movie.poster,
                     movie.plot,
@@ -61,6 +62,7 @@ class CinemaDetails extends Component {
 }
 
 CinemaDetails.propTypes = {
+    selectMovie: PropTypes.func.isRequired,
     imageHeight: PropTypes.number.isRequired,
     imageWidth: PropTypes.number.isRequired,
     movie: PropTypes.object.isRequired,

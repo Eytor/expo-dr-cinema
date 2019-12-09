@@ -16,6 +16,7 @@ import CinemaDetails from '../../components/CinemaDetails/CinemaDetails';
 class CinemaDetailScreen extends Component {
     constructor(props) {
         super(props);
+        this.selectMovie = this.selectMovie.bind(this);
         this.state = {
             relatedMovies: [],
         };
@@ -39,7 +40,7 @@ class CinemaDetailScreen extends Component {
     selectMovie(id, name, poster, plot, duration, releaseYear, genres) {
         setMovie(id, name, poster, plot, duration, releaseYear, genres);
         console.log('time to navigate');
-        this.props.navigation.navigate('MovieDetailsScreen', { title: name });
+        this.props.navigation.navigate('MovieDetailScreen', { title: name });
     }
 
     render() {
@@ -53,6 +54,7 @@ class CinemaDetailScreen extends Component {
                 imageHeight={imageHeight}
                 imageWidth={imageWidth}
                 movie={movie}
+                selectMovie={this.selectMovie}
 
             />
         ));
