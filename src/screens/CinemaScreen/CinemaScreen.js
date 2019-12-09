@@ -81,7 +81,9 @@ class CinemaScreen extends Component {
                             <AntIcon name="arrowright" color="#fff" size={20} />
                         </TouchableOpacity>
                         <View style={{ flex: 1 }}>
-                            <Text style={[defaultStyles.largeHeading, { paddingLeft: 15 }]}>Kvikmyndahús</Text>
+                            <Text style={[defaultStyles.largeHeading, { paddingLeft: 15 }]}>
+                                Kvikmyndahús
+                            </Text>
                             <ScrollView style={styles.cinemaWrapper}>
                                 {cinemas}
                             </ScrollView>

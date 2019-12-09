@@ -2,7 +2,17 @@ import * as constants from '../constants';
 
 
 // eslint-disable-next-line import/prefer-default-export
-export const setMovie = (id, name, poster, plot, duration, releaseYear, genres, showtimes, certificateColor) => ({
+export const setMovie = (
+    id,
+    name,
+    poster,
+    plot,
+    duration,
+    releaseYear,
+    genres,
+    showtimes,
+    certificateColor,
+) => ({
     type: constants.CHANGE_MOVIE,
     payload: {
         id, name, poster, plot, duration, releaseYear, genres, showtimes, certificateColor,
