@@ -65,7 +65,7 @@ class CinemaDetailScreen extends Component {
                         source={{ uri: movie.poster }}
                     />
                     <View style={styles.infoBoxBottom}>
-                        {movie.genres.map((genre) => <View><Text>{genre.Name}</Text></View>)}
+                        {movie.genres.map((genre) => <View key={genre.ID}><Text>{genre.Name}</Text></View>)}
                     </View>
                 </View>
             </TouchableOpacity>
