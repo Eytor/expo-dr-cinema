@@ -28,6 +28,7 @@ class CinemaDetailScreen extends Component {
 
     filterMovies = () => {
         getAllMovies(this.props.token).then((allMovies) => {
+            // eslint-disable-next-line max-len
             const movies = allMovies.filter((movie) => movie.showtimes.findIndex((showtime) => showtime.cinema.id === this.props.cinema.id) !== -1);
             this.setState({
                 relatedMovies: movies,
@@ -65,7 +66,11 @@ class CinemaDetailScreen extends Component {
                         source={{ uri: movie.poster }}
                     />
                     <View style={styles.infoBoxBottom}>
-                        {movie.genres.map((genre) => <View key={genre.ID}><Text>{genre.Name}</Text></View>)}
+                        {movie.genres.map((genre) => (
+                            <View key={genre.ID}>
+                                <Text>{genre.Name}</Text>
+                            </View>
+                        ))}
                     </View>
                 </View>
             </TouchableOpacity>
@@ -78,11 +83,9 @@ class CinemaDetailScreen extends Component {
                         <View style={styles.header}>
                             <Text style={styles.headerText}>{cinema.name}</Text>
                         </View>
-                        {cinema.description && (
-                            <View style={styles.body}>
-                                <Text style={styles.description}>{cinema.description.replace(/<\/?[^>]+(>|$)/g, '')}</Text>
-                            </View>
-                        )}
+                        <View style={styles.body}>
+                            <Text style={styles.description}>{cinema.description.replace(/<\/?[^>]+(>|$)/g, '')}</Text>
+                        </View>
                         <View style={styles.footer}>
                             <Text style={styles.footerText}>
                                 {cinema.website}
@@ -95,11 +98,7 @@ class CinemaDetailScreen extends Component {
                     <View style={styles.movieList}>
                         <View>
                             <Text style={defaultStyles.heading}>
-                                Í
-                                {' '}
-                                {cinema.name}
-                                {' '}
-                                núna
+                                {`Í ${cinema.name} núna`}
                             </Text>
                         </View>
 
@@ -112,11 +111,29 @@ class CinemaDetailScreen extends Component {
 }
 
 CinemaDetailScreen.propTypes = {
-    navigation: PropTypes.object.isRequired,
+    // navigation: PropTypes.object.isRequired,
     token: PropTypes.string.isRequired,
-    cinema: PropTypes.object.isRequired,
+    cinema: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        description: PropTypes.string,
+        address: PropTypes.string.isRequired,
+        city: PropTypes.string.isRequired,
+        phone: PropTypes.string,
+        website: PropTypes.string.isRequired,
+    }),
 };
 
-const mapStateToProps = (reduxStoreState) => ({ token: reduxStoreState.token, cinema: reduxStoreState.cinema });
+CinemaDetailScreen.defaultProps = {
+    cinema: PropTypes.shape({
+        description: '',
+        phone: '',
+    }),
+};
+
+const mapStateToProps = ({ token, cinema }) => ({
+    token,
+    cinema,
+});
 
 export default connect(mapStateToProps)(CinemaDetailScreen);

@@ -89,6 +89,7 @@ class CinemaScreen extends Component {
 
 CinemaScreen.propTypes = {
     setToken: PropTypes.func.isRequired,
+    setCinema: PropTypes.func.isRequired,
     token: PropTypes.string.isRequired,
     navigation: PropTypes.object.isRequired,
 };
