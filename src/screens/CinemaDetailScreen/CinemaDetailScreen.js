@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './CinemaDetailScreen.styles';
 import { getAllMovies } from '../../service/services';
@@ -38,9 +39,8 @@ class CinemaDetailScreen extends Component {
     }
 
     selectMovie(id, name, poster, plot, duration, releaseYear, genres) {
-        setMovie(id, name, poster, plot, duration, releaseYear, genres);
-        console.log('time to navigate');
-        this.props.navigation.navigate('MovieDetailsScreen', { title: name });
+        this.props.setMovie(id, name, poster, plot, duration, releaseYear, genres);
+        this.props.navigation.navigate('MovieDetailScreen', { title: name });
     }
 
     render() {
@@ -136,6 +136,7 @@ class CinemaDetailScreen extends Component {
 CinemaDetailScreen.propTypes = {
     navigation: PropTypes.object.isRequired,
     token: PropTypes.string.isRequired,
+    setMovie: PropTypes.func.isRequired,
     cinema: PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
@@ -159,4 +160,9 @@ const mapStateToProps = ({ token, cinema }) => ({
     cinema,
 });
 
-export default connect(mapStateToProps, { setMovie })(CinemaDetailScreen);
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+    { setMovie },
+    dispatch,
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(CinemaDetailScreen);

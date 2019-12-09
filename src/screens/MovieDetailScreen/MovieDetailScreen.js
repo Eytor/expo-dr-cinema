@@ -14,7 +14,7 @@ class MovieDetailScreen extends Component {
     render() {
         const { movie } = this.props;
         const genres = movie.genres.map((genre) => (
-            <View>
+            <View key={genre.ID}>
                 <Text>{genre.Name}</Text>
             </View>
         ));
@@ -40,7 +40,7 @@ class MovieDetailScreen extends Component {
                         />
                         <View style={styles.body}>
                             <Text style={styles.description}>
-                                {movie.plot.replace(/<\/?[^>]+(>|$)/g, '')}
+                                {movie.plot}
                             </Text>
                         </View>
                         <View style={styles.footer}>
