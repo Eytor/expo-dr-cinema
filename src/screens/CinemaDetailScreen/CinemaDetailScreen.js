@@ -49,6 +49,7 @@ class CinemaDetailScreen extends Component {
         const imageWidth = dimensions.width;
         const movies = this.state.relatedMovies.map((movie) => (
             <CinemaDetails
+                key={movie.id}
                 imageHeight={imageHeight}
                 imageWidth={imageWidth}
                 movie={movie}
