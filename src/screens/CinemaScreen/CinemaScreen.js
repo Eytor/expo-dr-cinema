@@ -12,7 +12,7 @@ import { getAuthToken, getAllCinemas } from '../../service/services';
 import styles from './CinemaScreen.styles';
 import { setToken } from '../../actions/tokenActions';
 import { setCinema } from '../../actions/cinemaActions';
-import Cinema from '../../components/Cinemas';
+import Cinema from '../../components/Cinemas/Cinemas';
 
 class CinemaScreen extends Component {
     constructor(props) {

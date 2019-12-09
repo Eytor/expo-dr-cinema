@@ -3,9 +3,7 @@ import {
     View,
     Text,
     ScrollView,
-    Image,
     Dimensions,
-    TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -13,6 +11,7 @@ import defaultStyles from '../../resources/defaultStyles';
 import styles from './CinemaDetailScreen.styles';
 import { getAllMovies } from '../../service/services';
 import { setMovie } from '../../actions/movieActions';
+import CinemaDetails from '../../components/CinemaDetails/CinemaDetails';
 
 class CinemaDetailScreen extends Component {
     constructor(props) {
@@ -49,41 +48,13 @@ class CinemaDetailScreen extends Component {
         const imageHeight = ((dimensions.width - 60) * 10) / 6.75;
         const imageWidth = (dimensions.width - 60);
         const movies = this.state.relatedMovies.map((movie) => (
-            <TouchableOpacity
+            <CinemaDetails
                 key={movie.id}
-                onPress={() => this.selectMovie(movie.id,
-                    movie.title,
-                    movie.poster,
-                    movie.plot,
-                    movie.durationMinutes,
-                    movie.year,
-                    movie.genres)}
-            >
-                <View style={styles.movieWrapper}>
-                    <View style={styles.infoBoxTop}>
-                        <Text style={styles.movieHeading}>
-                            {movie.title}
-                        </Text>
-                        <Text style={styles.movieHeading}>
-                            {movie.year}
-                        </Text>
-                    </View>
-                    <View style={styles.movieposterWrapper}>
-                        <Image
-                            style={{ height: imageHeight, width: imageWidth, maxWidth: '100%' }}
-                            resizeMode="contain"
-                            source={{ uri: movie.poster }}
-                        />
-                    </View>
-                    <View style={styles.infoBoxBottom}>
-                        {movie.genres.map((genre) => (
-                            <View key={genre.ID}>
-                                <Text style={styles.movieGenre}>{genre.Name}</Text>
-                            </View>
-                        ))}
-                    </View>
-                </View>
-            </TouchableOpacity>
+                imageHeight={imageHeight}
+                imageWidth={imageWidth}
+                movie={movie}
+
+            />
         ));
 
         return (
