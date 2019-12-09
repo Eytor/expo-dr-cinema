@@ -13,8 +13,8 @@ import defaultStyles from '../../resources/defaultStyles';
 import styles from './CinemaDetailScreen.styles';
 import { getAllMovies } from '../../service/services';
 import { setMovie } from '../../actions/movieActions';
-import CinemaDetails from '../../components/CinemaDetails/CinemaDetails';
 import Colors from '../../resources/Colors';
+import MovieDetails from '../../components/MovieDetails/MovieDetails';
 
 class CinemaDetailScreen extends Component {
     constructor(props) {
@@ -22,7 +22,6 @@ class CinemaDetailScreen extends Component {
         this.selectMovie = this.selectMovie.bind(this);
         this.state = {
             relatedMovies: [],
-            isLoading: true,
         };
     }
 
@@ -53,7 +52,7 @@ class CinemaDetailScreen extends Component {
         const imageHeight = ((dimensions.width - 60) * 10) / 6.75;
         const imageWidth = (dimensions.width - 60);
         const movies = this.state.relatedMovies.map((movie) => (
-            <CinemaDetails
+            <MovieDetails
                 key={movie.id}
                 imageHeight={imageHeight}
                 imageWidth={imageWidth}
