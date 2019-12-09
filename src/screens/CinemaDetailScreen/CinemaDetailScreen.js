@@ -55,6 +55,7 @@ class CinemaDetailScreen extends Component {
                 imageWidth={imageWidth}
                 movie={movie}
                 selectMovie={this.selectMovie}
+                certificate={movie.certificateIS}
 
             />
         ));

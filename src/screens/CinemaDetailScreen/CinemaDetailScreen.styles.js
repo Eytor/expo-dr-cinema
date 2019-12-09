@@ -40,48 +40,4 @@ export default StyleSheet.create({
         backgroundColor: Colors.charcoal,
         borderRadius: 15,
     },
-    movieWrapper: {
-        flex: 1,
-        marginBottom: 30,
-        alignItems: 'center',
-    },
-    movieHeading: {
-        fontSize: 14,
-        color: Colors.white,
-    },
-    movieGenre: {
-        color: Colors.white,
-        fontSize: 14,
-        marginBottom: 5,
-    },
-    movieposterWrapper: {
-        flex: 1,
-        alignItems: 'center',
-    },
-    movieposter: {
-        alignSelf: 'stretch',
-    },
-    infoBoxTop: {
-        position: 'relative',
-        top: 2,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-        padding: 15,
-        backgroundColor: Colors.blue,
-        borderTopLeftRadius: 15,
-        borderTopRightRadius: 15,
-    },
-    infoBoxBottom: {
-        position: 'relative',
-        top: -2,
-        width: '100%',
-        padding: 15,
-        backgroundColor: Colors.blue,
-        borderBottomLeftRadius: 15,
-        borderBottomRightRadius: 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-    },
 });
