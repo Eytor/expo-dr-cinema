@@ -3,7 +3,7 @@ import { ScrollView, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getUpcomingMovies } from '../../service/services';
-import CinemaDetails from '../../components/CinemaDetails/CinemaDetails';
+import MovieDetails from '../../components/MovieDetails/MovieDetails';
 
 class UpcomingMovies extends Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class UpcomingMovies extends Component {
         const imageHeight = ((dimensions.width - 60) * 10) / 6.75;
         const imageWidth = (dimensions.width - 60);
         const movieList = this.state.movies.map((movie) => (
-            <CinemaDetails
+            <MovieDetails
                 key={movie.id}
                 selectMovie={() => {}}
                 imageHeight={imageHeight}

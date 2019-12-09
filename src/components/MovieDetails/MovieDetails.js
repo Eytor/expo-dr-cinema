@@ -3,10 +3,10 @@ import {
     TouchableOpacity, View, Text, Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import styles from './CinemaDetails.styles';
+import styles from './MovieDetails.styles';
 import Colors from '../../resources/Colors';
 
-class CinemaDetails extends Component {
+class MovieDetails extends Component {
     getCertificateColor = () => {
         const { certificate } = this.props;
         if (!certificate) {
@@ -83,7 +83,7 @@ class CinemaDetails extends Component {
     }
 }
 
-CinemaDetails.propTypes = {
+MovieDetails.propTypes = {
     selectMovie: PropTypes.func.isRequired,
     imageHeight: PropTypes.number.isRequired,
     imageWidth: PropTypes.number.isRequired,
@@ -94,8 +94,8 @@ CinemaDetails.propTypes = {
     ]),
 };
 
-CinemaDetails.defaultProps = {
+MovieDetails.defaultProps = {
     certificate: null,
 };
 
-export default CinemaDetails;
+export default MovieDetails;
