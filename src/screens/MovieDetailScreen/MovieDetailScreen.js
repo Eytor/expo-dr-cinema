@@ -25,8 +25,8 @@ class MovieDetailScreen extends Component {
             />
         ));
         const showtimes = movie.showtimes.map((showtime, index) => (
-            // eslint-disable-next-line react/no-array-index-key
             <ShowTime
+                // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 showtime={showtime}
                 index={index}
