@@ -3,6 +3,7 @@ import CinemaScreen from '../screens/CinemaScreen/CinemaScreen';
 import CinemaDetailScreen from '../screens/CinemaDetailScreen/CinemaDetailScreen';
 import MovieDetailScreen from '../screens/MovieDetailScreen/MovieDetailScreen';
 import UpcomingMovies from '../screens/UpcomingMovies/UpcomingMovies';
+import UpcomingMovieDetails from '../screens/UpcomingMovieDetails/UpcomingMovieDetails';
 import Colors from '../resources/Colors';
 
 const AppNavigator = createStackNavigator({
@@ -47,6 +48,19 @@ const AppNavigator = createStackNavigator({
     },
     UpcomingMovies: {
         screen: UpcomingMovies,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: navigation.state.params.title,
+            headerTitleStyle: {
+                color: '#fff',
+            },
+            headerTintColor: '#fff',
+            headerStyle: {
+                backgroundColor: Colors.dark,
+            },
+        }),
+    },
+    UpcomingMovieDetails: {
+        screen: UpcomingMovieDetails,
         navigationOptions: ({ navigation }) => ({
             headerTitle: navigation.state.params.title,
             headerTitleStyle: {

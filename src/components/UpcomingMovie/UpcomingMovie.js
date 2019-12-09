@@ -18,6 +18,7 @@ class MovieDetails extends Component {
         const releaseDate = new Date(movie['release-dateIS']);
         const month = months[releaseDate.getMonth()];
         const newDate = `${releaseDate.getDate()}. ${month} ${releaseDate.getFullYear()}`;
+        const trailers = movie.trailers.length > 0 ? movie.trailers[0].results : [];
         return (
             <TouchableOpacity
                 key={movie.id}
@@ -25,10 +26,7 @@ class MovieDetails extends Component {
                     movie.title,
                     movie.poster,
                     movie.plot,
-                    movie.durationMinutes,
-                    movie.year,
-                    movie.genres,
-                    movie.showtimes)}
+                    trailers)}
             >
                 <View style={styles.movieWrapper}>
                     <View style={[styles.infoBoxTop, { backgroundColor: Colors.success }]}>

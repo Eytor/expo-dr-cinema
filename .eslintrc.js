@@ -57,6 +57,7 @@ module.exports = {
     "no-plusplus": 0,
     "no-invalid-this": 0,
     "no-underscore-dangle": 0,
-    "react/jsx-props-no-spreading": 0
+    "react/jsx-props-no-spreading": 0,
+    "react/no-array-index-key": 0
   },
 };
