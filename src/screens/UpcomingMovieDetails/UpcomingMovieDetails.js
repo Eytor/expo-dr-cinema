@@ -18,7 +18,6 @@ class MovieDetailScreen extends Component {
         const dimensions = Dimensions.get('window');
         const imageWidth = (dimensions.width - 30);
         const imageHeight = (dimensions.height) - 95;
-        console.log(movie.trailers);
         const trailers = movie.trailers.map((trailer, index) => (
             <View key={index}>
                 <Text style={styles.headerText}>{`${trailer.site}: ${trailer.name}`}</Text>
