@@ -8,7 +8,7 @@ import Colors from '../../resources/Colors';
 
 class CinemaDetails extends Component {
     getCertificateColor = () => {
-        if (typeof this.props.certificate === 'object' && typeof this.props.certificate !== null) {
+        if (typeof this.props.certificate === 'object' && this.props.certificate !== null) {
             return this.props.certificate.is === 'N/A' ? Colors.success : Colors.danger;
         }
         if (this.props.certificate === 'Öllum leyfð') {
