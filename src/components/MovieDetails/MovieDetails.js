@@ -38,7 +38,6 @@ const MovieDetails = ({
             key={movie.id}
             onPress={() => selectMovie(movie.id,
                 movie.title,
-                movie.year,
                 movie.poster,
                 movie.plot,
                 movie.durationMinutes,

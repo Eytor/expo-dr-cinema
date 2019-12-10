@@ -19,7 +19,6 @@ const getCurrentMoviesSuccess = (currentMovies) => ({
 export const setMovie = (
     id,
     name,
-    year,
     poster,
     plot,
     duration,
@@ -30,7 +29,7 @@ export const setMovie = (
 ) => ({
     type: constants.CHANGE_MOVIE,
     payload: {
-        id, name, year, poster, plot, duration, releaseYear, genres, showtimes, certificateColor,
+        id, name, poster, plot, duration, releaseYear, genres, showtimes, certificateColor,
     },
 });
 

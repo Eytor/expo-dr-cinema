@@ -24,12 +24,7 @@ class CinemaDetailScreen extends Component {
         };
     }
 
-
-    componentWillMount() {
-        this.filterMovies();
-    }
-
-    filterMovies = async () => {
+    async componentWillMount() {
         const { getAllMovies, token, cinema } = this.props;
         await getAllMovies(token);
         const { movies } = this.props;
@@ -41,10 +36,23 @@ class CinemaDetailScreen extends Component {
         });
     }
 
+    /**
+     * Fuction that sets the global redux state to set which movie is selected
+     *
+     * @param {number} id - id of selected movie
+     * @param {string} name - name of selected movie
+     * @param {string} poster - poster of the selected movie
+     * @param {string} plot - plot of the selected movie
+     * @param {number} duration - duration of the selected movie
+     * @param {string} releaseYear - year of release of selected movie
+     * @param {array} genres - list of genres related to this movie
+     * @param {array} showtimes - list of showtimes for this movie
+     * @param {string} certificateColor - color for the certificate of the movie
+     * @memberof CinemaDetailScreen
+     */
     selectMovie(
         id,
         name,
-        year,
         poster,
         plot,
         duration,
@@ -58,7 +66,7 @@ class CinemaDetailScreen extends Component {
             (showTime) => showTime.cinema.id === cinema.id,
         )[0].schedule;
         setCurrentMovie(
-            id, name, year, poster, plot, duration,
+            id, name, poster, plot, duration,
             releaseYear, genres, itsShowtime, certificateColor,
         );
         navigation.navigate('MovieDetailScreen', { title: name });

@@ -3,7 +3,6 @@ import * as constants from '../constants/index';
 const initialState = {
     id: null,
     name: '',
-    year: '',
     Image: '',
     Plot: '',
     duration: 0,
