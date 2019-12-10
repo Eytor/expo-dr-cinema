@@ -1,5 +1,5 @@
 import * as constants from '../constants';
-import { getAllMovies, getUpcomingMovies } from '../service/services';
+import { getAllMovies, getUpcomingMovies } from '../service/movieService';
 
 export const getMovies = (token) => async (dispatch) => {
     try {
