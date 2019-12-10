@@ -3,7 +3,7 @@ import CinemaScreen from '../screens/CinemaScreen/CinemaScreen';
 import CinemaDetailScreen from '../screens/CinemaDetailScreen/CinemaDetailScreen';
 import MovieDetailScreen from '../screens/MovieDetailScreen/MovieDetailScreen';
 import UpcomingMoviesScreen from '../screens/UpcomingMoviesScreen/UpcomingMoviesScreen';
-import UpcomingMovieDetails from '../screens/UpcomingMovieDetails/UpcomingMovieDetails';
+import UpcomingMovieDetailsScreen from '../screens/UpcomingMovieDetailsScreen/UpcomingMovieDetailsScreen';
 import Colors from '../resources/Colors';
 
 const AppNavigator = createStackNavigator({
@@ -63,7 +63,7 @@ const AppNavigator = createStackNavigator({
         }),
     },
     UpcomingMovieDetails: {
-        screen: UpcomingMovieDetails,
+        screen: UpcomingMovieDetailsScreen,
         navigationOptions: ({ navigation }) => ({
             headerTitle: navigation.state.params.title,
             headerTitleStyle: {
