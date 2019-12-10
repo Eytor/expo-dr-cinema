@@ -1,12 +1,7 @@
 import { getAuthToken } from '../service/services';
 import * as constants from '../constants';
 
-export const setToken = (token) => ({
-    type: constants.SET_TOKEN,
-    payload: token,
-});
-
-export const getCurrentToken = () => async (dispatch) => {
+export default () => async (dispatch) => {
     try {
         const currentToken = await getAuthToken();
         dispatch(getCurrentTokenSuccess(currentToken));

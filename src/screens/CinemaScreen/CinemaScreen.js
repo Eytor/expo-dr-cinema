@@ -12,7 +12,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './CinemaScreen.styles';
-import { getCurrentToken } from '../../actions/tokenActions';
+import getCurrentToken from '../../actions/tokenActions';
 import { setCinema, getCinemas } from '../../actions/cinemaActions';
 import Cinema from '../../components/Cinemas/Cinemas';
 
@@ -88,7 +88,7 @@ CinemaScreen.propTypes = {
     cinemas: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = (reduxStoreState) => ({ token: reduxStoreState.token, cinemas: reduxStoreState.cinemas });
+const mapStateToProps = ({ token, cinemas }) => ({ token, cinemas });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
     { getCurrentToken, setCinema, getCinemas },

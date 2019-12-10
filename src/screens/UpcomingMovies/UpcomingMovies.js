@@ -5,10 +5,9 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { getUpcomingMovies } from '../../service/services';
 import UpcomingMovie from '../../components/UpcomingMovie/UpcomingMovie';
 import defaultStyles from '../../resources/defaultStyles';
-import { setUpcomingMovie } from '../../actions/movieActions';
+import { setUpcomingMovie, getAllUpcomingMovies } from '../../actions/movieActions';
 
 class UpcomingMovies extends Component {
     constructor(props) {
@@ -19,15 +18,17 @@ class UpcomingMovies extends Component {
         };
     }
 
-    componentDidMount() {
-        getUpcomingMovies(this.props.token).then((movies) => this.setState({
-            movies: movies.sort((a, b) => new Date(b['release-dateIS']) - new Date(a['release-dateIS'])),
-        }));
+    async componentDidMount() {
+        const { getMovies, token } = this.props;
+        await getMovies(token);
+        const { upcomingMovies } = this.props;
+        this.setState({ movies: upcomingMovies.sort((a, b) => new Date(b['release-dateIS']) - new Date(a['release-dateIS'])) });
     }
 
     selectMovie(id, name, poster, plot, trailers) {
-        this.props.setUpcomingMovie(id, name, poster, plot, trailers);
-        this.props.navigation.navigate('UpcomingMovieDetails', { title: name });
+        const { selectUpcomingMovie, navigation } = this.props;
+        selectUpcomingMovie(id, name, poster, plot, trailers);
+        navigation.navigate('UpcomingMovieDetails', { title: name });
     }
 
 
@@ -65,15 +66,18 @@ class UpcomingMovies extends Component {
 UpcomingMovies.propTypes = {
     token: PropTypes.string.isRequired,
     navigation: PropTypes.object.isRequired,
-    setUpcomingMovie: PropTypes.func.isRequired,
+    selectUpcomingMovie: PropTypes.func.isRequired,
+    getMovies: PropTypes.func.isRequired,
+    upcomingMovies: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = ({ token }) => ({
+const mapStateToProps = ({ token, upcomingMovies }) => ({
     token,
+    upcomingMovies,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
-    { setUpcomingMovie },
+    { selectUpcomingMovie: setUpcomingMovie, getMovies: getAllUpcomingMovies },
     dispatch,
 );
 
