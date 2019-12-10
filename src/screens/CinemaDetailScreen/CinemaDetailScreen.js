@@ -11,8 +11,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './CinemaDetailScreen.styles';
-import { getAllMovies } from '../../service/services';
-import { setMovie } from '../../actions/movieActions';
+import { setMovie, getMovies } from '../../actions/movieActions';
 import Colors from '../../resources/Colors';
 import MovieDetails from '../../components/MovieDetails/MovieDetails';
 
@@ -30,13 +29,13 @@ class CinemaDetailScreen extends Component {
         this.filterMovies();
     }
 
-    filterMovies = () => {
-        getAllMovies(this.props.token).then((allMovies) => {
-            // eslint-disable-next-line max-len
-            const movies = allMovies.filter((movie) => movie.showtimes.findIndex((showtime) => showtime.cinema.id === this.props.cinema.id) !== -1);
-            this.setState({
-                relatedMovies: movies,
-            });
+    filterMovies = async () => {
+        await this.props.getMovies(this.props.token);
+        const movies = this.props.movies.filter((movie) => movie.showtimes.findIndex(
+            (showtime) => showtime.cinema.id === this.props.cinema.id,
+        ) !== -1);
+        this.setState({
+            relatedMovies: movies,
         });
     }
 
@@ -129,6 +128,8 @@ CinemaDetailScreen.propTypes = {
     navigation: PropTypes.object.isRequired,
     token: PropTypes.string.isRequired,
     setMovie: PropTypes.func.isRequired,
+    getMovies: PropTypes.func.isRequired,
+    movies: PropTypes.array.isRequired,
     cinema: PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
@@ -147,13 +148,14 @@ CinemaDetailScreen.defaultProps = {
     }),
 };
 
-const mapStateToProps = ({ token, cinema }) => ({
+const mapStateToProps = ({ token, cinema, movies }) => ({
     token,
     cinema,
+    movies,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
-    { setMovie },
+    { setMovie, getMovies },
     dispatch,
 );
 
