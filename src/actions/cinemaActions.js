@@ -20,5 +20,5 @@ export const getCinemas = (token) => async (dispatch) => {
 
 const getCinemasSuccess = (currentCinemas) => ({
     type: constants.GET_CINEMAS,
-    payload: currentCinemas,
+    payload: currentCinemas.sort((a, b) => a.name.localeCompare(b.name)),
 });
