@@ -1,3 +1,10 @@
+/**
+ * Function that gets all upcoming movies from API
+ *
+ * @export
+ * @param {string} token - access token
+ * @returns
+ */
 export function getUpcomingMovies(token) {
     const url = 'http://api.kvikmyndir.is/upcoming';
     return fetch(url, {
@@ -16,6 +23,13 @@ export function getUpcomingMovies(token) {
     }).catch((error) => { console.log(error); });
 }
 
+/**
+ * Function that gets all movies from API
+ *
+ * @export
+ * @param {string} token - access token
+ * @returns
+ */
 export function getAllMovies(token) {
     const url = 'http://api.kvikmyndir.is/movies';
     return fetch(url, {

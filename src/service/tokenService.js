@@ -1,3 +1,9 @@
+/**
+ * Function that gets authentication token from API
+ *
+ * @export
+ * @returns
+ */
 export default function getAuthToken() {
     const url = 'http://api.kvikmyndir.is/authenticate';
     const userinfo = { username: 'eythoras16', password: 'MappBadBoy' };
