@@ -19,14 +19,14 @@ class MovieDetailScreen extends Component {
         const dimensions = Dimensions.get('window');
         const imageWidth = (dimensions.width - 30);
         const imageHeight = (dimensions.height) - 95;
-        const genres = movie.genres.map((genre) => (
+        const genres = movie.genres.map((genre, index) => (
             <Genre
+                key={index}
                 Name={genre.Name}
             />
         ));
         const showtimes = movie.showtimes.map((showtime, index) => (
             <ShowTime
-                // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 showtime={showtime}
                 index={index}
