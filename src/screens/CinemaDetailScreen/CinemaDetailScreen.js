@@ -52,7 +52,7 @@ class CinemaDetailScreen extends Component {
         showtimes,
         certificateColor,
     ) {
-        const { cinema, setAllMovie } = this.props;
+        const { cinema, setAllMovie, navigation } = this.props;
         const itsShowtime = showtimes.filter(
             (showTime) => showTime.cinema.id === cinema.id,
         )[0].schedule;
@@ -67,7 +67,6 @@ class CinemaDetailScreen extends Component {
             itsShowtime,
             certificateColor,
         );
-        const { navigation } = this.props;
         navigation.navigate('MovieDetailScreen', { title: name });
     }
 

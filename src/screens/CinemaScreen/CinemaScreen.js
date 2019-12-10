@@ -26,18 +26,21 @@ class CinemaScreen extends Component {
     }
 
     async componentWillMount() {
-        await this.props.getCurrentToken();
-        await this.props.getCinemas(this.props.token);
+        const { getToken, getAllCinemas, token } = this.props;
+        await getToken();
+        await getAllCinemas(token);
         this.setState({ isLoading: false });
     }
 
     selectCinema(cinema) {
-        this.props.setCinema(cinema.id, cinema.name, cinema['address\t'], cinema.city, cinema.phone, cinema.website, cinema.description);
-        this.props.navigation.navigate('CinemaDetailScreen', { title: cinema.name });
+        const { setAllCinema, navigation } = this.props;
+        setAllCinema(cinema.id, cinema.name, cinema['address\t'], cinema.city, cinema.phone, cinema.website, cinema.description);
+        navigation.navigate('CinemaDetailScreen', { title: cinema.name });
     }
 
     render() {
-        const cinemas = this.props.cinemas.map((cinema) => (
+        const { cinemas, navigation } = this.props;
+        const cinemasList = cinemas.map((cinema) => (
             <Cinema
                 key={cinema.id}
                 cinema={cinema}
@@ -59,7 +62,7 @@ class CinemaScreen extends Component {
                     <View style={{ flex: 1 }}>
                         <TouchableOpacity
                             style={styles.upComingMoviesBtn}
-                            onPress={() => this.props.navigation.navigate('UpcomingMovies', { title: 'Upcoming Movies' })}
+                            onPress={() => navigation.navigate('UpcomingMovies', { title: 'Upcoming Movies' })}
                         >
                             <Text style={styles.upComingMoviesBtnText}>Væntanlega kvikmyndir</Text>
                             <AntIcon name="arrowright" color="#fff" size={20} />
@@ -69,7 +72,7 @@ class CinemaScreen extends Component {
                                 Kvikmyndahús
                             </Text>
                             <ScrollView style={styles.cinemaWrapper}>
-                                {cinemas}
+                                {cinemasList}
                             </ScrollView>
                         </View>
                     </View>
@@ -80,9 +83,9 @@ class CinemaScreen extends Component {
 }
 
 CinemaScreen.propTypes = {
-    getCurrentToken: PropTypes.func.isRequired,
-    getCinemas: PropTypes.func.isRequired,
-    setCinema: PropTypes.func.isRequired,
+    getToken: PropTypes.func.isRequired,
+    getAllCinemas: PropTypes.func.isRequired,
+    setAllCinema: PropTypes.func.isRequired,
     token: PropTypes.string.isRequired,
     navigation: PropTypes.object.isRequired,
     cinemas: PropTypes.array.isRequired,
@@ -91,7 +94,7 @@ CinemaScreen.propTypes = {
 const mapStateToProps = ({ token, cinemas }) => ({ token, cinemas });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
-    { getCurrentToken, setCinema, getCinemas },
+    { getToken: getCurrentToken, setAllCinema: setCinema, getAllCinemas: getCinemas },
     dispatch,
 );
 
