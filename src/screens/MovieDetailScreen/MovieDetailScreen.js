@@ -44,7 +44,7 @@ const MovieDetailScreen = ({ movie, cinema }) => {
                     <View style={{ padding: 15 }}>
                         <View style={styles.header}>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={styles.headerText}>{movie.name}</Text>
+                                <Text style={styles.headerText}>{`${movie.name} (${movie.year})`}</Text>
                                 <View style={
                                     [styles.certificateDot,
                                         { backgroundColor: movie.certificateColor },
@@ -85,6 +85,7 @@ MovieDetailScreen.propTypes = {
     movie: PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
+        year: PropTypes.string.isRequired,
         poster: PropTypes.string.isRequired,
         plot: PropTypes.string.isRequired,
         duration: PropTypes.number.isRequired,

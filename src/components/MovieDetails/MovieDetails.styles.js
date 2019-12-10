@@ -12,19 +12,6 @@ export default StyleSheet.create({
         fontSize: 14,
         color: Colors.white,
     },
-    // movieGenre: {
-    //     color: Colors.white,
-    //     fontSize: 14,
-    //     marginBottom: 5,
-    //     marginRight: 10,
-    // },
-    // movieposterWrapper: {
-    //     flex: 1,
-    //     alignItems: 'center',
-    // },
-    // movieposter: {
-    //     alignSelf: 'stretch',
-    // },
     infoBoxTop: {
         position: 'relative',
         top: 2,

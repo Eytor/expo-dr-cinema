@@ -30,9 +30,9 @@ class CinemaDetailScreen extends Component {
     }
 
     filterMovies = async () => {
-        const { getAllMovies, token } = this.props;
+        const { getAllMovies, token, cinema } = this.props;
         await getAllMovies(token);
-        const { movies, cinema } = this.props;
+        const { movies } = this.props;
         const moviesList = movies.filter((movie) => movie.showtimes.findIndex(
             (showtime) => showtime.cinema.id === cinema.id,
         ) !== -1);
@@ -44,6 +44,7 @@ class CinemaDetailScreen extends Component {
     selectMovie(
         id,
         name,
+        year,
         poster,
         plot,
         duration,
@@ -52,20 +53,13 @@ class CinemaDetailScreen extends Component {
         showtimes,
         certificateColor,
     ) {
-        const { cinema, setAllMovie, navigation } = this.props;
+        const { cinema, setCurrentMovie, navigation } = this.props;
         const itsShowtime = showtimes.filter(
             (showTime) => showTime.cinema.id === cinema.id,
         )[0].schedule;
-        setAllMovie(
-            id,
-            name,
-            poster,
-            plot,
-            duration,
-            releaseYear,
-            genres,
-            itsShowtime,
-            certificateColor,
+        setCurrentMovie(
+            id, name, year, poster, plot, duration,
+            releaseYear, genres, itsShowtime, certificateColor,
         );
         navigation.navigate('MovieDetailScreen', { title: name });
     }
@@ -130,7 +124,7 @@ class CinemaDetailScreen extends Component {
 CinemaDetailScreen.propTypes = {
     navigation: PropTypes.object.isRequired,
     token: PropTypes.string.isRequired,
-    setAllMovie: PropTypes.func.isRequired,
+    setCurrentMovie: PropTypes.func.isRequired,
     getAllMovies: PropTypes.func.isRequired,
     movies: PropTypes.array.isRequired,
     cinema: PropTypes.shape({
@@ -158,7 +152,7 @@ const mapStateToProps = ({ token, cinema, movies }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
-    { setAllMovie: setMovie, getAllMovies: getMovies },
+    { setCurrentMovie: setMovie, getAllMovies: getMovies },
     dispatch,
 );
 
