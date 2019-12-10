@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     TouchableOpacity, View, Text, Image,
 } from 'react-native';
@@ -7,83 +7,75 @@ import styles from './MovieDetails.styles';
 import Colors from '../../resources/Colors';
 import Genre from '../Genre/Genre';
 
-class MovieDetails extends Component {
-    getCertificateColor = () => {
-        const { certificate } = this.props;
-        if (!certificate) {
-            return Colors.success;
-        }
-        if (typeof certificate === 'object' && certificate !== null) {
-            return certificate.is === 'N/A' ? Colors.success : Colors.danger;
-        }
-        if (certificate === 'Öllum leyfð') {
-            return Colors.success;
-        }
-
-        if (certificate === '6 ára' || certificate === '9 ára') {
-            return Colors.lightblue;
-        }
-
-        if (certificate === '12 ára') {
-            return Colors.warning;
-        }
-
-        return Colors.danger;
+const getCertificateColor = (certificate) => {
+    if (!certificate) {
+        return Colors.success;
+    }
+    if (typeof certificate === 'object' && certificate !== null) {
+        return certificate.is === 'N/A' ? Colors.success : Colors.danger;
+    }
+    if (certificate === 'Öllum leyfð') {
+        return Colors.success;
     }
 
-    render() {
-        const {
-            imageHeight,
-            imageWidth,
-            movie,
-            selectMovie,
-        } = this.props;
-        const certicateColor = this.getCertificateColor();
-        return (
-            <TouchableOpacity
-                key={movie.id}
-                onPress={() => selectMovie(movie.id,
-                    movie.title,
-                    movie.poster,
-                    movie.plot,
-                    movie.durationMinutes,
-                    movie.year,
-                    movie.genres,
-                    movie.showtimes,
-                    certicateColor)}
-            >
-                <View style={styles.movieWrapper}>
-                    <View style={[styles.infoBoxTop, { backgroundColor: certicateColor }]}>
-                        <Text style={styles.movieHeading}>
-                            {movie.title}
-                        </Text>
-                        <Text style={styles.movieHeading}>
-                            {movie.year}
-                        </Text>
-                    </View>
-                    <Image
-                        style={{
-                            width: imageWidth,
-                            height: imageHeight,
-                        }}
-                        resizeMode="contain"
-                        source={{ uri: movie.poster }}
-                    />
-                    <View style={[styles.infoBoxBottom, { backgroundColor: certicateColor }]}>
-                        {movie.genres.map((genre) => (
-                            // eslint-disable-next-line react/no-array-index-key
-                            <Genre
-                                key={genre.ID}
-                                Name={genre.Name}
-                            />
-                        ))}
-                    </View>
+    if (certificate === '6 ára' || certificate === '9 ára') {
+        return Colors.lightblue;
+    }
+
+    if (certificate === '12 ára') {
+        return Colors.warning;
+    }
+
+    return Colors.danger;
+};
+
+const MovieDetails = ({
+    imageHeight, imageWidth, movie, selectMovie, certificate,
+}) => {
+    const certicateColor = getCertificateColor(certificate);
+    return (
+        <TouchableOpacity
+            key={movie.id}
+            onPress={() => selectMovie(movie.id,
+                movie.title,
+                movie.poster,
+                movie.plot,
+                movie.durationMinutes,
+                movie.year,
+                movie.genres,
+                movie.showtimes,
+                certicateColor)}
+        >
+            <View style={styles.movieWrapper}>
+                <View style={[styles.infoBoxTop, { backgroundColor: certicateColor }]}>
+                    <Text style={styles.movieHeading}>
+                        {movie.title}
+                    </Text>
+                    <Text style={styles.movieHeading}>
+                        {movie.year}
+                    </Text>
                 </View>
-            </TouchableOpacity>
-
-        );
-    }
-}
+                <Image
+                    style={{
+                        width: imageWidth,
+                        height: imageHeight,
+                    }}
+                    resizeMode="contain"
+                    source={{ uri: movie.poster }}
+                />
+                <View style={[styles.infoBoxBottom, { backgroundColor: certicateColor }]}>
+                    {movie.genres.map((genre) => (
+                        // eslint-disable-next-line react/no-array-index-key
+                        <Genre
+                            key={genre.ID}
+                            Name={genre.Name}
+                        />
+                    ))}
+                </View>
+            </View>
+        </TouchableOpacity>
+    );
+};
 
 MovieDetails.propTypes = {
     selectMovie: PropTypes.func.isRequired,
