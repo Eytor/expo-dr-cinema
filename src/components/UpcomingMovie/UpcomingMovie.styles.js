@@ -12,15 +12,6 @@ export default StyleSheet.create({
         fontSize: 16,
         color: Colors.white,
     },
-    // movieGenre: {
-    //     color: Colors.white,
-    //     fontSize: 14,
-    //     marginBottom: 5,
-    // },
-    // movieposterWrapper: {
-    //     flex: 1,
-    //     alignItems: 'center',
-    // },
     moviePoster: {
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8,
