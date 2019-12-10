@@ -1,4 +1,5 @@
 import * as constants from '../constants';
+import { getAllCinemas } from '../service/services';
 
 
 export const setCinema = (id, name, address, city, phone, website, description) => ({
@@ -8,11 +9,12 @@ export const setCinema = (id, name, address, city, phone, website, description) 
     },
 });
 
-export const getCinemas = () => async (dispatch) => {
+export const getCinemas = (token) => async (dispatch) => {
     try {
-        const currentCinemas = await 
+        const currentCinemas = await getAllCinemas(token);
+        dispatch(getCinemasSuccess(currentCinemas));
     } catch (error) {
-        console.log('an error occurred getting cinemas', error)
+        console.log('an error occurred getting cinemas', error);
     }
 };
 
