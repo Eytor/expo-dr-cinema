@@ -1,3 +1,10 @@
+/**
+ * Function that gets all cinemas from API
+ *
+ * @export
+ * @param {string} token - access token
+ * @returns
+ */
 export default function getAllCinemas(token) {
     const url = 'http://api.kvikmyndir.is/theaters';
     return fetch(url, {
