@@ -32,9 +32,16 @@ class CinemaScreen extends Component {
         this.setState({ isLoading: false });
     }
 
+    /**
+     * Function that sets the global state of current cinema
+     * to the cinema passed in.
+     *
+     * @param {object} cinema - object of cinemas
+     * @memberof CinemaScreen
+     */
     selectCinema(cinema) {
-        const { setAllCinema, navigation } = this.props;
-        setAllCinema(cinema.id, cinema.name, cinema['address\t'], cinema.city, cinema.phone, cinema.website, cinema.description);
+        const { setCurrentCinema, navigation } = this.props;
+        setCurrentCinema(cinema.id, cinema.name, cinema['address\t'], cinema.city, cinema.phone, cinema.website, cinema.description);
         navigation.navigate('CinemaDetailScreen', { title: cinema.name });
     }
 
@@ -85,7 +92,7 @@ class CinemaScreen extends Component {
 CinemaScreen.propTypes = {
     getToken: PropTypes.func.isRequired,
     getAllCinemas: PropTypes.func.isRequired,
-    setAllCinema: PropTypes.func.isRequired,
+    setCurrentCinema: PropTypes.func.isRequired,
     token: PropTypes.string.isRequired,
     navigation: PropTypes.object.isRequired,
     cinemas: PropTypes.array.isRequired,
@@ -94,7 +101,7 @@ CinemaScreen.propTypes = {
 const mapStateToProps = ({ token, cinemas }) => ({ token, cinemas });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
-    { getToken: getCurrentToken, setAllCinema: setCinema, getAllCinemas: getCinemas },
+    { getToken: getCurrentToken, setCurrentCinema: setCinema, getAllCinemas: getCinemas },
     dispatch,
 );
 
