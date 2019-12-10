@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { WebView } from 'react-native-webview';
 import defaultStyles from '../../resources/defaultStyles';
-import styles from './UpcomingMovieDetails.styles';
+import styles from './UpcomingMovieDetailsScreen.styles';
 
 const UpcomingMovieDetailScreen = ({ movie }) => {
     const dimensions = Dimensions.get('window');
