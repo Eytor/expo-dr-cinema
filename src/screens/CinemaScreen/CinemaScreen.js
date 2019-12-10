@@ -11,9 +11,9 @@ import { bindActionCreators } from 'redux';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import defaultStyles from '../../resources/defaultStyles';
-import { getAuthToken, getAllCinemas } from '../../service/services';
+import { getAllCinemas } from '../../service/services';
 import styles from './CinemaScreen.styles';
-import { setToken } from '../../actions/tokenActions';
+import { getCurrentToken } from '../../actions/tokenActions';
 import { setCinema } from '../../actions/cinemaActions';
 import Cinema from '../../components/Cinemas/Cinemas';
 
@@ -27,23 +27,18 @@ class CinemaScreen extends Component {
         };
     }
 
-    componentWillMount() {
-        getAuthToken()
-            .then((token) => {
-                this.props.setToken(token);
+    async componentWillMount() {
+        await this.props.getCurrentToken();
+        getAllCinemas(this.props.token)
+            .then((cinemaList) => {
+                this.setState({
+                    cinemaList: cinemaList.sort((a, b) => a.name.localeCompare(b.name)),
+                });
             })
             .then(() => {
-                getAllCinemas(this.props.token)
-                    .then((cinemaList) => {
-                        this.setState({
-                            cinemaList: cinemaList.sort((a, b) => a.name.localeCompare(b.name)),
-                        });
-                    })
-                    .then(() => {
-                        this.setState({
-                            isLoading: false,
-                        });
-                    });
+                this.setState({
+                    isLoading: false,
+                });
             });
     }
 
@@ -96,7 +91,7 @@ class CinemaScreen extends Component {
 }
 
 CinemaScreen.propTypes = {
-    setToken: PropTypes.func.isRequired,
+    getCurrentToken: PropTypes.func.isRequired,
     setCinema: PropTypes.func.isRequired,
     token: PropTypes.string.isRequired,
     navigation: PropTypes.object.isRequired,
@@ -105,7 +100,7 @@ CinemaScreen.propTypes = {
 const mapStateToProps = (reduxStoreState) => ({ token: reduxStoreState.token });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
-    { setToken, setCinema },
+    { getCurrentToken, setCinema },
     dispatch,
 );
 
