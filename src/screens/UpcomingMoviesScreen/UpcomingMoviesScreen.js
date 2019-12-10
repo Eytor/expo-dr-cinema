@@ -9,7 +9,7 @@ import UpcomingMovie from '../../components/UpcomingMovie/UpcomingMovie';
 import defaultStyles from '../../resources/defaultStyles';
 import { setUpcomingMovie, getAllUpcomingMovies } from '../../actions/movieActions';
 
-class UpcomingMovies extends Component {
+class UpcomingMoviesScreen extends Component {
     constructor(props) {
         super(props);
         this.selectMovie = this.selectMovie.bind(this);
@@ -63,7 +63,7 @@ class UpcomingMovies extends Component {
     }
 }
 
-UpcomingMovies.propTypes = {
+UpcomingMoviesScreen.propTypes = {
     token: PropTypes.string.isRequired,
     navigation: PropTypes.object.isRequired,
     selectUpcomingMovie: PropTypes.func.isRequired,
@@ -81,4 +81,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
     dispatch,
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpcomingMovies);
+export default connect(mapStateToProps, mapDispatchToProps)(UpcomingMoviesScreen);
