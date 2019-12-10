@@ -7,6 +7,13 @@ import styles from './MovieDetails.styles';
 import Colors from '../../resources/Colors';
 import Genre from '../Genre/Genre';
 
+/**
+ * Function that gets the certificate of a movie and return color
+ * representation of that certificate.
+ *
+ * @param {object || string} certificate - ether an object of certificate values or string
+ * @returns
+ */
 const getCertificateColor = (certificate) => {
     if (!certificate) {
         return Colors.success;
