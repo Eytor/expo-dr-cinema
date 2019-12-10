@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './Genre.styles';
 
 const Genre = ({ Name }) => (
-    <Text style={styles.genre}>{Name}</Text>
+    <Text style={styles.movieGenre}>{Name}</Text>
 );
 
 Genre.propTypes = {
