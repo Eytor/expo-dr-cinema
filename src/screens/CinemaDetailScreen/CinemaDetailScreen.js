@@ -30,12 +30,14 @@ class CinemaDetailScreen extends Component {
     }
 
     filterMovies = async () => {
-        await this.props.getMovies(this.props.token);
-        const movies = this.props.movies.filter((movie) => movie.showtimes.findIndex(
-            (showtime) => showtime.cinema.id === this.props.cinema.id,
+        const { getAllMovies, token } = this.props;
+        await getAllMovies(token);
+        const { movies, cinema } = this.props;
+        const moviesList = movies.filter((movie) => movie.showtimes.findIndex(
+            (showtime) => showtime.cinema.id === cinema.id,
         ) !== -1);
         this.setState({
-            relatedMovies: movies,
+            relatedMovies: moviesList,
         });
     }
 
@@ -50,10 +52,11 @@ class CinemaDetailScreen extends Component {
         showtimes,
         certificateColor,
     ) {
+        const { cinema, setAllMovie } = this.props;
         const itsShowtime = showtimes.filter(
-            (showTime) => showTime.cinema.id === this.props.cinema.id,
+            (showTime) => showTime.cinema.id === cinema.id,
         )[0].schedule;
-        this.props.setMovie(
+        setAllMovie(
             id,
             name,
             poster,
@@ -64,7 +67,8 @@ class CinemaDetailScreen extends Component {
             itsShowtime,
             certificateColor,
         );
-        this.props.navigation.navigate('MovieDetailScreen', { title: name });
+        const { navigation } = this.props;
+        navigation.navigate('MovieDetailScreen', { title: name });
     }
 
     render() {
@@ -127,8 +131,8 @@ class CinemaDetailScreen extends Component {
 CinemaDetailScreen.propTypes = {
     navigation: PropTypes.object.isRequired,
     token: PropTypes.string.isRequired,
-    setMovie: PropTypes.func.isRequired,
-    getMovies: PropTypes.func.isRequired,
+    setAllMovie: PropTypes.func.isRequired,
+    getAllMovies: PropTypes.func.isRequired,
     movies: PropTypes.array.isRequired,
     cinema: PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -155,7 +159,7 @@ const mapStateToProps = ({ token, cinema, movies }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
-    { setMovie, getMovies },
+    { setAllMovie: setMovie, getAllMovies: getMovies },
     dispatch,
 );
 
