@@ -2,7 +2,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import CinemaScreen from '../screens/CinemaScreen/CinemaScreen';
 import CinemaDetailScreen from '../screens/CinemaDetailScreen/CinemaDetailScreen';
 import MovieDetailScreen from '../screens/MovieDetailScreen/MovieDetailScreen';
-import UpcomingMovies from '../screens/UpcomingMovies/UpcomingMovies';
+import UpcomingMoviesScreen from '../screens/UpcomingMoviesScreen/UpcomingMoviesScreen';
 import UpcomingMovieDetails from '../screens/UpcomingMovieDetails/UpcomingMovieDetails';
 import Colors from '../resources/Colors';
 
@@ -49,7 +49,7 @@ const AppNavigator = createStackNavigator({
         }),
     },
     UpcomingMovies: {
-        screen: UpcomingMovies,
+        screen: UpcomingMoviesScreen,
         navigationOptions: () => ({
             headerTitle: 'Væntanlegar kvikmyndir',
             headerTitleStyle: {
