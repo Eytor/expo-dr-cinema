@@ -11,10 +11,9 @@ import { bindActionCreators } from 'redux';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import defaultStyles from '../../resources/defaultStyles';
-import { getAllCinemas } from '../../service/services';
 import styles from './CinemaScreen.styles';
 import { getCurrentToken } from '../../actions/tokenActions';
-import { setCinema } from '../../actions/cinemaActions';
+import { setCinema, getCinemas } from '../../actions/cinemaActions';
 import Cinema from '../../components/Cinemas/Cinemas';
 
 class CinemaScreen extends Component {
@@ -22,24 +21,14 @@ class CinemaScreen extends Component {
         super(props);
         this.selectCinema = this.selectCinema.bind(this);
         this.state = {
-            cinemaList: [],
             isLoading: true,
         };
     }
 
     async componentWillMount() {
         await this.props.getCurrentToken();
-        getAllCinemas(this.props.token)
-            .then((cinemaList) => {
-                this.setState({
-                    cinemaList: cinemaList.sort((a, b) => a.name.localeCompare(b.name)),
-                });
-            })
-            .then(() => {
-                this.setState({
-                    isLoading: false,
-                });
-            });
+        await this.props.getCinemas(this.props.token);
+        this.setState({ isLoading: false });
     }
 
     selectCinema(cinema) {
@@ -48,7 +37,7 @@ class CinemaScreen extends Component {
     }
 
     render() {
-        const cinemas = this.state.cinemaList.map((cinema) => (
+        const cinemas = this.props.cinemas.map((cinema) => (
             <Cinema
                 key={cinema.id}
                 cinema={cinema}
@@ -92,15 +81,17 @@ class CinemaScreen extends Component {
 
 CinemaScreen.propTypes = {
     getCurrentToken: PropTypes.func.isRequired,
+    getCinemas: PropTypes.func.isRequired,
     setCinema: PropTypes.func.isRequired,
     token: PropTypes.string.isRequired,
     navigation: PropTypes.object.isRequired,
+    cinemas: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = (reduxStoreState) => ({ token: reduxStoreState.token });
+const mapStateToProps = (reduxStoreState) => ({ token: reduxStoreState.token, cinemas: reduxStoreState.cinemas });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
-    { getCurrentToken, setCinema },
+    { getCurrentToken, setCinema, getCinemas },
     dispatch,
 );
 
