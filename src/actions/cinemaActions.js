@@ -1,5 +1,5 @@
 import * as constants from '../constants';
-import { getAllCinemas } from '../service/services';
+import getAllCinemas from '../service/cinemaService';
 
 
 export const setCinema = (id, name, address, city, phone, website, description) => ({

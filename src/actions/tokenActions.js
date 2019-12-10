@@ -1,4 +1,4 @@
-import { getAuthToken } from '../service/services';
+import getAuthToken from '../service/tokenService';
 import * as constants from '../constants';
 
 export default () => async (dispatch) => {
