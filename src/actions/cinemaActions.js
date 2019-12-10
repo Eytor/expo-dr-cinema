@@ -8,4 +8,15 @@ export const setCinema = (id, name, address, city, phone, website, description) 
     },
 });
 
-export const nothing = {};
+export const getCinemas = () => async (dispatch) => {
+    try {
+        const currentCinemas = await 
+    } catch (error) {
+        console.log('an error occurred getting cinemas', error)
+    }
+};
+
+const getCinemasSuccess = (currentCinemas) => ({
+    type: constants.GET_CINEMAS,
+    payload: currentCinemas,
+});
