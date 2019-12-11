@@ -45,7 +45,7 @@ const MovieDetailScreen = ({ movie, cinema }) => {
                     </View>
                     <View style={{ padding: 15 }}>
                         <View style={styles.header}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                                 <Text style={styles.headerText}>{`${movie.name} (${movie.releaseYear})`}</Text>
                                 <View style={
                                     [styles.certificateDot,
