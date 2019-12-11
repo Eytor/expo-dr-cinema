@@ -30,11 +30,13 @@ const UpcomingMovieDetailScreen = ({ movie }) => {
         <ScrollView style={{ flex: 1 }}>
             <View style={[defaultStyles.container, { paddingHorizontal: 15 }]}>
                 <View style={styles.movieWrapper}>
-                    <Image
-                        style={[styles.moviePoster, { width: imageWidth, height: imageHeight }]}
-                        resizeMode="cover"
-                        source={{ uri: movie.poster }}
-                    />
+                    <View style={[styles.moviePoster, { overflow: 'hidden', justifyContent: 'center', alignItems: 'center' }]}>
+                        <Image
+                            style={[styles.moviePoster, { width: imageWidth, height: imageHeight }]}
+                            resizeMode="cover"
+                            source={{ uri: movie.poster }}
+                        />
+                    </View>
                     <View style={{ padding: 15 }}>
                         <View style={styles.header}>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -47,7 +49,7 @@ const UpcomingMovieDetailScreen = ({ movie }) => {
                             </Text>
                         </View>
                     </View>
-                    <View>
+                    <View style={{ paddingBottom: 15 }}>
                         {trailers}
                     </View>
                 </View>

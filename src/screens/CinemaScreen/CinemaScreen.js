@@ -71,13 +71,13 @@ class CinemaScreen extends Component {
                             style={styles.upComingMoviesBtn}
                             onPress={() => navigation.navigate('UpcomingMovies', { title: 'Upcoming Movies' })}
                         >
-                            <Text style={styles.upComingMoviesBtnText}>Væntanlega kvikmyndir</Text>
+                            <Text style={styles.upComingMoviesBtnText}>Væntanlegar kvikmyndir</Text>
                             <AntIcon name="arrowright" color="#fff" size={20} />
                         </TouchableOpacity>
                         <View style={{ flex: 1 }}>
                             <Text style={[defaultStyles.largeHeading, { paddingLeft: 15 }]}>
                                     Kvikmyndahús
-                                </Text>
+                            </Text>
                             <ScrollView style={styles.cinemaWrapper}>
                                 {cinemasList}
                             </ScrollView>
