@@ -18,9 +18,9 @@ const UpcomingMovieDetailScreen = ({ movie }) => {
     const imageHeight = (dimensions.height) - 95;
     const trailers = movie.trailers.map((trailer, index) => (
         <View key={index}>
-            <Text style={styles.headerText}>{`${trailer.site}: ${trailer.name}`}</Text>
+            <Text style={[styles.headerText, { padding: 15 }]}>{`${trailer.site}: ${trailer.name}`}</Text>
             <WebView
-                style={{ height: 200, width: '100%' }}
+                style={{ height: 185, width: '100%' }}
                 javaScriptEnabled
                 source={{ uri: trailer.url }}
             />

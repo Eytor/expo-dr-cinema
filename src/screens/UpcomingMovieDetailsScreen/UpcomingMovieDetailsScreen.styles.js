@@ -9,16 +9,6 @@ export default StyleSheet.create({
         position: 'relative',
         marginBottom: 15,
     },
-    moviePosterWrapper: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        overflow: 'hidden',
-        borderRadius: 15,
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-    },
     moviePoster: {
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
@@ -27,12 +17,6 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: 15,
-    },
-    certificateDot: {
-        width: 10,
-        height: 10,
-        marginLeft: 10,
-        borderRadius: 10,
     },
     headerText: {
         color: Colors.white,
@@ -45,20 +29,5 @@ export default StyleSheet.create({
         fontSize: 14,
         lineHeight: 18,
         color: Colors.gray,
-    },
-    genresWrapper: {
-        marginBottom: 15,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-    },
-    genre: {
-        color: Colors.gray,
-        marginRight: 10,
-        fontSize: 14,
-    },
-    buyNow: {
-        fontSize: 14,
-        color: Colors.white,
-        paddingVertical: 5,
     },
 });
