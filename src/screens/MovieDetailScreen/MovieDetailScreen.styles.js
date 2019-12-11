@@ -9,16 +9,7 @@ export default StyleSheet.create({
         position: 'relative',
         marginBottom: 15,
     },
-    // moviePosterWrapper: {
-    //     position: 'absolute',
-    //     top: 0,
-    //     left: 0,
-    //     right: 0,
-    //     overflow: 'hidden',
-    //     borderRadius: 15,
-    //     justifyContent: 'flex-start',
-    //     alignItems: 'flex-start',
-    // },
+
     moviePoster: {
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
@@ -56,9 +47,5 @@ export default StyleSheet.create({
         marginRight: 10,
         fontSize: 14,
     },
-    // buyNow: {
-    //     fontSize: 14,
-    //     color: Colors.white,
-    //     paddingVertical: 5,
-    // },
+
 });
