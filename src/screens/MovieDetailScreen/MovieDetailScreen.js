@@ -36,11 +36,13 @@ const MovieDetailScreen = ({ movie, cinema }) => {
         <ScrollView style={{ flex: 1 }}>
             <View style={[defaultStyles.container, { paddingHorizontal: 15 }]}>
                 <View style={styles.movieWrapper}>
-                    <Image
-                        style={[styles.moviePoster, { width: imageWidth, height: imageHeight }]}
-                        resizeMode="cover"
-                        source={{ uri: movie.poster }}
-                    />
+                    <View style={[styles.moviePoster, { overflow: 'hidden' }]}>
+                        <Image
+                            style={[styles.moviePoster, { width: imageWidth, height: imageHeight }]}
+                            resizeMode="cover"
+                            source={{ uri: movie.poster }}
+                        />
+                    </View>
                     <View style={{ padding: 15 }}>
                         <View style={styles.header}>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>

@@ -40,6 +40,7 @@ export default StyleSheet.create({
     genresWrapper: {
         marginBottom: 15,
         flexDirection: 'row',
+        flexWrap: 'wrap',
         justifyContent: 'flex-start',
     },
     genre: {
