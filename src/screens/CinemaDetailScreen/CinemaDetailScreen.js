@@ -21,6 +21,7 @@ class CinemaDetailScreen extends Component {
         this.selectMovie = this.selectMovie.bind(this);
         this.state = {
             relatedMovies: [],
+            loading: true
         };
     }
 
@@ -33,6 +34,7 @@ class CinemaDetailScreen extends Component {
         ) !== -1);
         this.setState({
             relatedMovies: moviesList,
+            loading: false
         });
     }
 
@@ -121,7 +123,11 @@ class CinemaDetailScreen extends Component {
                                 {`Í ${cinema.name} núna`}
                             </Text>
                         </View>
-                        {movies.length > 0 ? movies : <ActivityIndicator size="small" color={Colors.gray} />}
+                        {!this.state.loading ?
+                            movies.length > 0 ?
+                            movies :
+                            <Text style={{color: '#FFF'}}>Engar myndir í bíó í dag</Text> :
+                            <ActivityIndicator size="small" color={Colors.gray} />}
                     </View>
                 </ScrollView>
             </View>
