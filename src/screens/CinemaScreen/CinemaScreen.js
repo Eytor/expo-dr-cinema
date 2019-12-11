@@ -26,9 +26,9 @@ class CinemaScreen extends Component {
     }
 
     async componentWillMount() {
-        const { getToken, getAllCinemas, token } = this.props;
+        const { getToken, getAllCinemas } = this.props;
         await getToken();
-        await getAllCinemas(token);
+        await getAllCinemas(this.props.token);
         this.setState({ isLoading: false });
     }
 
@@ -76,8 +76,8 @@ class CinemaScreen extends Component {
                         </TouchableOpacity>
                         <View style={{ flex: 1 }}>
                             <Text style={[defaultStyles.largeHeading, { paddingLeft: 15 }]}>
-                                Kvikmyndahús
-                            </Text>
+                                    Kvikmyndahús
+                                </Text>
                             <ScrollView style={styles.cinemaWrapper}>
                                 {cinemasList}
                             </ScrollView>
